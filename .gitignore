@@ -219,3 +219,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Large raw datasets
+datasets/raw/books/goodreads_books.json
