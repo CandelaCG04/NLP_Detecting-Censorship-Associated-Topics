@@ -6,9 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# raw data
-datasets/raw/goodreads_books.json
-
 # Distribution / packaging
 .Python
 build/
@@ -222,3 +219,6 @@ __marimo__/
 
 # Large raw datasets
 datasets/raw/books/goodreads_books.json
+datasets/raw/books/goodreads_book_authors.json.gz
+datasets/interim/
+datasets/clean/books_summaries_merged.csv
