@@ -11,11 +11,12 @@ to ONE ROW PER UNIQUE BOOK with the columns:
 
 Usage
 -----
-    python preprocess_pen_bans.py data/pen_bans/ -o banned_titles_clean.csv
-    python preprocess_pen_bans.py 2022.csv 2023.csv 2025.csv --flip-authors
+    python csv_preprocess.py                      # datasets/raw/banned -> datasets/clean/bannedT_titles_clean.csv
+    python csv_preprocess.py data/pen_bans/ -o banned_titles_clean.csv
+    python csv_preprocess.py 2022.csv 2023.csv 2025.csv
 
 Or from Python:
-    from preprocess_pen_bans import preprocess
+    from csv_preprocess import preprocess
     df = preprocess(["a.csv", "b.csv"])
 """
 from __future__ import annotations
@@ -33,6 +34,9 @@ import pandas as pd
 # --------------------------------------------------------------------------- #
 # Configuration
 # --------------------------------------------------------------------------- #
+RAW_DIR = Path("datasets/raw/banned")
+OUTPUT_PATH = Path("datasets/clean/bannedT_titles_clean.csv")
+
 DATE_COL = "Date of Challenge/Removal"
 FINAL_COLUMNS = [
     "Author",
@@ -275,7 +279,7 @@ def _union_secondary(s: pd.Series):
 # --------------------------------------------------------------------------- #
 # Pipeline
 # --------------------------------------------------------------------------- #
-def preprocess(paths, flip_authors: bool = False, fuzzy_threshold: float = 0.92) -> pd.DataFrame:
+def preprocess(paths, fuzzy_threshold: float = 0.92) -> pd.DataFrame:
     paths = [Path(p) for p in paths]
     df = pd.concat([load_csv(p) for p in paths], ignore_index=True)
     n_raw = len(df)
@@ -287,9 +291,8 @@ def preprocess(paths, flip_authors: bool = False, fuzzy_threshold: float = 0.92)
     df = df.dropna(subset=["Title"]).copy()
 
     df["Title"] = df["Title"].map(strip_series).map(fix_inverted_article).map(fix_case)
-    df["Author"] = df["Author"].map(fix_case)
-    if flip_authors:
-        df["Author"] = df["Author"].map(flip_name)
+    # 'Last, First' -> 'First Last' (matches Goodreads/CMU/Open Library)
+    df["Author"] = df["Author"].map(fix_case).map(flip_name)
     for col in ("Type of Ban", "Ban Status"):
         df[col] = df[col].map(normalize_ban_label)
 
@@ -349,10 +352,9 @@ def _collect_paths(inputs, exclude: Path) -> list[Path]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Preprocess PEN America book-ban CSVs.")
-    ap.add_argument("inputs", nargs="+", help="CSV files and/or folders containing CSVs")
-    ap.add_argument("-o", "--output", default="banned_titles_clean.csv")
-    ap.add_argument("--flip-authors", action="store_true",
-                    help="'Last, First' -> 'First Last' (matches Goodreads/CMU/Open Library)")
+    ap.add_argument("inputs", nargs="*", default=[RAW_DIR],
+                    help=f"CSV files and/or folders containing CSVs (default: {RAW_DIR})")
+    ap.add_argument("-o", "--output", default=OUTPUT_PATH)
     ap.add_argument("--fuzzy-threshold", type=float, default=0.92,
                     help="title similarity (0-1) for merging variants within an author; 1 disables")
     args = ap.parse_args()
@@ -362,7 +364,7 @@ def main() -> None:
     if not paths:
         raise SystemExit("No CSV files found.")
 
-    df = preprocess(paths, flip_authors=args.flip_authors, fuzzy_threshold=args.fuzzy_threshold)
+    df = preprocess(paths, fuzzy_threshold=args.fuzzy_threshold)
     df.to_csv(out_path, index=False, date_format="%Y-%m")
     print(f"\nSaved -> {out_path}")
 
