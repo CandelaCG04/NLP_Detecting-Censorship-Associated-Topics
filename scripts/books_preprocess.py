@@ -26,7 +26,7 @@ import pandas as pd
 from rapidfuzz import fuzz
 from tqdm import tqdm
 
-from csv_preprocess import NAME_SUFFIXES, _ascii_fold, author_key, clean_text, title_key
+from scripts.csv_preprocess import NAME_SUFFIXES, _ascii_fold, author_key, clean_text, title_key
 
 # --------------------------------------------------------------------------- #
 # Configuration

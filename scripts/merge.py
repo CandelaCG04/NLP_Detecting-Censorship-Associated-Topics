@@ -23,10 +23,10 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-from csv_preprocess import FINAL_COLUMNS as BANNED_COLUMNS
-from csv_preprocess import _ascii_fold
-from books_preprocess import FINAL_COLUMNS as SUMMARIES_COLUMNS
-from books_preprocess import AUTHOR_THRESHOLD, GENRE_SEP, TITLE_THRESHOLD, match_books
+from scripts.csv_preprocess import FINAL_COLUMNS as BANNED_COLUMNS
+from scripts.csv_preprocess import _ascii_fold
+from scripts.books_preprocess import FINAL_COLUMNS as SUMMARIES_COLUMNS
+from scripts.books_preprocess import AUTHOR_THRESHOLD, GENRE_SEP, TITLE_THRESHOLD, match_books
 
 # --------------------------------------------------------------------------- #
 # Configuration
