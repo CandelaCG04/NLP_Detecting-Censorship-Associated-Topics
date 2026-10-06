@@ -5,9 +5,11 @@ dataset, then merge them by fuzzy-matching (author, title) pairs.
 
 Output: one row per book with the columns
 
-    Author, Title, CMU Summary, Goodreads Summary
+    Author, Title, Publication Date, Genres, CMU Summary, Goodreads Summary
 
 Books found in only one dataset keep an empty value for the other summary.
+Publication Date and Genres come from CMU when available, else from Goodreads
+(Goodreads dates are those of the most-rated edition, not the original work).
 
 """
 from __future__ import annotations
@@ -32,12 +34,15 @@ from csv_preprocess import NAME_SUFFIXES, _ascii_fold, author_key, clean_text, t
 CMU_PATH = Path("datasets/raw/books/booksummaries.txt")
 GOODREADS_PATH = Path("datasets/raw/books/goodreads_books.json")
 GOODREADS_AUTHORS_PATH = Path("datasets/raw/books/goodreads_book_authors.json.gz")
+GOODREADS_GENRES_PATH = Path("datasets/raw/books/goodreads_book_genres_initial.json.gz")
 GOODREADS_CACHE = Path("datasets/interim/goodreads_clean.pkl")
 OUTPUT_PATH = Path("datasets/clean/books_summaries_merged.csv")
 
 CMU_COLUMNS = ["Wikipedia ID", "Freebase ID", "Title", "Author",
                "Publication Date", "Genres", "Summary"]
-FINAL_COLUMNS = ["Author", "Title", "CMU Summary", "Goodreads Summary"]
+FINAL_COLUMNS = ["Author", "Title", "Publication Date", "Genres",
+                 "CMU Summary", "Goodreads Summary"]
+GENRE_SEP = "; "
 
 # rapidfuzz scores (0-100) a candidate pair must reach to count as the same book
 TITLE_THRESHOLD = 90
@@ -58,13 +63,33 @@ def _drop_incomplete(df: pd.DataFrame, summary_col: str) -> pd.DataFrame:
     return df.dropna(subset=["Author", "Title", summary_col]).reset_index(drop=True)
 
 
+def _cmu_genres(value):
+    #Freebase JSON dict {"/m/..": "Genre", ...} -> "Genre; Genre".
+    if not isinstance(value, str):
+        return None
+    return GENRE_SEP.join(json.loads(value).values()) or None
+
+
+def _goodreads_date(book: dict):
+    #publication_year/month/day -> "YYYY", "YYYY-MM" or "YYYY-MM-DD" (CMU format).
+    parts = []
+    for key, width in (("publication_year", 4), ("publication_month", 2), ("publication_day", 2)):
+        v = book.get(key)
+        if not v or not str(v).isdigit():
+            break
+        parts.append(str(int(v)).zfill(width))
+    return "-".join(parts) or None
+
+
 def load_cmu(path: Path = CMU_PATH) -> pd.DataFrame:
-    #CMU Book Summary Dataset -> DataFrame[Author, Title, Summary].
+    #CMU Book Summary Dataset -> DataFrame[Author, Title, Summary, Publication Date, Genres].
     df = pd.read_csv(path, sep="\t", header=None, names=CMU_COLUMNS, dtype=str,
                      quoting=csv.QUOTE_NONE, keep_default_na=False, na_values=[""],
                      encoding="utf-8")
     n_raw = len(df)
-    df = _drop_incomplete(df[["Author", "Title", "Summary"]].copy(), "Summary")
+    df["Genres"] = df["Genres"].map(_cmu_genres)
+    df = _drop_incomplete(df[["Author", "Title", "Summary", "Publication Date", "Genres"]].copy(),
+                          "Summary")
     df = df.drop_duplicates(subset=["Author", "Title"]).reset_index(drop=True)
     print(f"CMU        : {n_raw} raw -> {len(df)} with author, title and summary")
     return df
@@ -87,15 +112,35 @@ def _primary_author(authors: list[dict], names: dict[str, str]):
     return None
 
 
+def load_goodreads_genres(path: Path = GOODREADS_GENRES_PATH) -> dict[str, str]:
+    #book_id -> "genre; genre", most-voted genre first.
+    opener = gzip.open if path.suffix == ".gz" else open
+    with opener(path, "rt", encoding="utf-8") as f:
+        return {g["book_id"]: GENRE_SEP.join(sorted(g["genres"], key=g["genres"].get, reverse=True))
+                for g in map(json.loads, f) if g["genres"]}
+
+
+def _add_goodreads_genres(df: pd.DataFrame, genres_path: Path | None) -> pd.DataFrame:
+    if genres_path is None or not genres_path.exists():
+        print(f"Goodreads  : genres file {genres_path} not found, Goodreads genres left empty")
+        df["Genres"] = None
+    else:
+        df["Genres"] = df["book_id"].map(load_goodreads_genres(genres_path))
+    return df.drop(columns="book_id")
+
+
 def load_goodreads(path: Path = GOODREADS_PATH,
                    authors_path: Path = GOODREADS_AUTHORS_PATH,
-                   cache: Path | None = GOODREADS_CACHE) -> pd.DataFrame:
-    
-    #Goodreads books (JSON lines) -> DataFrame[Author, Title, Summary, ratings_count].
+                   cache: Path | None = GOODREADS_CACHE,
+                   genres_path: Path | None = GOODREADS_GENRES_PATH) -> pd.DataFrame:
+
+    #Goodreads books (JSON lines) -> DataFrame[Author, Title, Summary, ratings_count, Publication Date, Genres].
     if cache is not None and cache.exists():
         df = pd.read_pickle(cache)
-        print(f"Goodreads  : {len(df)} works loaded from cache {cache}")
-        return df
+        if {"book_id", "Publication Date"} <= set(df.columns):
+            print(f"Goodreads  : {len(df)} works loaded from cache {cache}")
+            return _add_goodreads_genres(df, genres_path)
+        print(f"Goodreads  : cache {cache} is outdated, re-parsing")
 
     names = load_goodreads_authors(authors_path)
     rows, n_raw = [], 0
@@ -107,13 +152,16 @@ def load_goodreads(path: Path = GOODREADS_PATH,
             book = json.loads(line)
             rows.append((
                 book.get("work_id") or book.get("book_id"),
+                book.get("book_id"),
                 _primary_author(book.get("authors", []), names),
                 book.get("title_without_series") or book.get("title"),
                 book.get("description"),
                 int(book.get("ratings_count") or 0),
+                _goodreads_date(book),
             ))
 
-    df = pd.DataFrame(rows, columns=["work_id", "Author", "Title", "Summary", "ratings_count"])
+    df = pd.DataFrame(rows, columns=["work_id", "book_id", "Author", "Title", "Summary",
+                                     "ratings_count", "Publication Date"])
     df = _drop_incomplete(df, "Summary")
     df = (df.sort_values("ratings_count", ascending=False, kind="stable")
             .drop_duplicates(subset="work_id")
@@ -124,7 +172,7 @@ def load_goodreads(path: Path = GOODREADS_PATH,
     if cache is not None:
         cache.parent.mkdir(parents=True, exist_ok=True)
         df.to_pickle(cache)
-    return df
+    return _add_goodreads_genres(df, genres_path)
 
 
 # --------------------------------------------------------------------------- #
@@ -205,11 +253,16 @@ def merge_datasets(cmu: pd.DataFrame, goodreads: pd.DataFrame,
                    matched_only: bool = False, **thresholds) -> pd.DataFrame:
     m = match_books(cmu, goodreads, **thresholds)
 
+    cmu_m = cmu.iloc[m["cmu_idx"]].reset_index(drop=True)
+    gr_m = goodreads.iloc[m["gr_idx"]].reset_index(drop=True)
     matched = pd.DataFrame({
-        "Author": cmu["Author"].to_numpy()[m["cmu_idx"]],
-        "Title": cmu["Title"].to_numpy()[m["cmu_idx"]],
-        "CMU Summary": cmu["Summary"].to_numpy()[m["cmu_idx"]],
-        "Goodreads Summary": goodreads["Summary"].to_numpy()[m["gr_idx"]],
+        "Author": cmu_m["Author"],
+        "Title": cmu_m["Title"],
+        # CMU metadata is per work; Goodreads only fills the gaps
+        "Publication Date": cmu_m["Publication Date"].fillna(gr_m["Publication Date"]),
+        "Genres": cmu_m["Genres"].fillna(gr_m["Genres"]),
+        "CMU Summary": cmu_m["Summary"],
+        "Goodreads Summary": gr_m["Summary"],
     })
     parts = [matched]
     if not matched_only:
@@ -234,6 +287,7 @@ def main() -> None:
     ap.add_argument("--cmu", type=Path, default=CMU_PATH)
     ap.add_argument("--goodreads", type=Path, default=GOODREADS_PATH)
     ap.add_argument("--goodreads-authors", type=Path, default=GOODREADS_AUTHORS_PATH)
+    ap.add_argument("--goodreads-genres", type=Path, default=GOODREADS_GENRES_PATH)
     ap.add_argument("--cache", type=Path, default=GOODREADS_CACHE,
                     help="pickle of the cleaned Goodreads data (delete it to re-parse)")
     ap.add_argument("-o", "--output", type=Path, default=OUTPUT_PATH)
@@ -244,7 +298,8 @@ def main() -> None:
     args = ap.parse_args()
 
     cmu = load_cmu(args.cmu)
-    goodreads = load_goodreads(args.goodreads, args.goodreads_authors, args.cache)
+    goodreads = load_goodreads(args.goodreads, args.goodreads_authors, args.cache,
+                               args.goodreads_genres)
     out = merge_datasets(cmu, goodreads, matched_only=args.matched_only,
                          title_threshold=args.title_threshold,
                          author_threshold=args.author_threshold)
