@@ -221,3 +221,4 @@ __marimo__/
 datasets/raw/books/*
 datasets/interim/
 datasets/clean/books_summaries_merged.csv
+datasets/clean/bannedT_titles_clean.csv
