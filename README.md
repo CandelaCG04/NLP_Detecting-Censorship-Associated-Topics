@@ -63,14 +63,17 @@ merge.py             step 3: match banned books to summaries and build the contr
 
 ## Pipeline
 
-Run the three steps in order. With no arguments, each script uses the default
-paths shown. Use `-h` on any script to see its options.
+Run the three steps in order, from the repository root (the default paths are
+relative to it). With no arguments, each script uses the default paths shown.
+Use `-h` on any script to see its options.
 
 ```bash
-python csv_preprocess.py     # -> datasets/clean/bannedT_titles_clean.csv
-python books_preprocess.py   # -> datasets/clean/books_summaries_merged.csv
-python merge.py              # -> datasets/clean/final_book_dataset.csv
+python scripts/csv_preprocess.py     # -> datasets/clean/bannedT_titles_clean.csv
+python scripts/books_preprocess.py   # -> datasets/clean/books_summaries_merged.csv
+python scripts/merge.py              # -> datasets/clean/final_book_dataset.csv
 ```
+
+`python -m scripts.merge` (etc.) works too.
 
 Steps 1 and 2 are independent. Step 3 needs both of their outputs.
 
@@ -128,8 +131,10 @@ Options: `--banned`, `--summaries`, `-o/--output`, `--seed`, `--title-threshold`
 
 The run takes a few minutes, mostly for the control-group matching against about 1.2M summaries.
 
-| Author | Title | Publication Date | Genres | CMU Summary | Goodreads Summary | Banned Status |
-|--------|-------|------------------|--------|-------------|-------------------|---------------|
+| Book ID | Author | Title | Publication Date | Genres | CMU Summary | Goodreads Summary | Banned Status |
+|---------|--------|-------|------------------|--------|-------------|-------------------|---------------|
+
+`Book ID` is a sequential integer (`0`, `1`, `2`, ...) assigned after sorting, so it matches the row number.
 
 With the current data, 3,455 of the 8,102 banned books have a summary. The
 final dataset has 6,910 rows: 3,455 banned and 3,455 controls.

@@ -19,12 +19,17 @@ import csv
 import gzip
 import json
 import re
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 import pandas as pd
 from rapidfuzz import fuzz
 from tqdm import tqdm
+
+# allow running as a file (python scripts/x.py) as well as a module (python -m scripts.x)
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from scripts.csv_preprocess import NAME_SUFFIXES, _ascii_fold, author_key, clean_text, title_key
 

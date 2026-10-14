@@ -7,7 +7,9 @@ with the closest publication date. No non-banned book is used twice.
 
 Output: one row per book with the columns
 
-    Author, Title, Publication Date, Genres, CMU Summary, Goodreads Summary, Banned Status
+    Book ID, Author, Title, Publication Date, Genres, CMU Summary, Goodreads Summary, Banned Status
+
+Book ID is a sequential integer (0, 1, 2, ...) assigned after sorting by author and title.
 
 Books found in only the banned dataset (with no summary) will be removed.
 
@@ -23,6 +25,10 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
+# allow running as a file (python scripts/x.py) as well as a module (python -m scripts.x)
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from scripts.csv_preprocess import FINAL_COLUMNS as BANNED_COLUMNS
 from scripts.csv_preprocess import _ascii_fold
 from scripts.books_preprocess import FINAL_COLUMNS as SUMMARIES_COLUMNS
@@ -36,7 +42,8 @@ SUMMARIES_PATH = Path("datasets/clean/books_summaries_merged.csv")
 OUTPUT_PATH = Path("datasets/clean/final_book_dataset.csv")
 
 BANNED_COL = "Banned Status"
-FINAL_COLUMNS = SUMMARIES_COLUMNS + [BANNED_COL]
+ID_COL = "Book ID"
+FINAL_COLUMNS = [ID_COL] + SUMMARIES_COLUMNS + [BANNED_COL]
 
 # breaks ties between equally good control candidates
 RANDOM_SEED = 42
@@ -220,6 +227,7 @@ def merge_datasets(summaries: pd.DataFrame, banned: pd.DataFrame,
         ["Author", "Title"],
         key=lambda s: s.map(lambda v: _ascii_fold(str(v)).casefold()),
     ).reset_index(drop=True)
+    out[ID_COL] = out.index
 
     print(f"Output rows: {len(out)} ({out[BANNED_COL].sum()} banned)")
     return out
