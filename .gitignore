@@ -219,6 +219,10 @@ __marimo__/
 
 # Large raw datasets
 datasets/raw/books/*
+datasets/raw/goodreads_books.json
 datasets/interim/
 datasets/clean/books_summaries_merged.csv
 datasets/clean/bannedT_titles_clean.csv
+datasets/topics/model/
+datasets/topics/embeddings_test.npy
+datasets/topics/embeddings_train.npy

@@ -13,6 +13,7 @@ Requires Python 3.12+ (developed on 3.12.2).
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
+python -m spacy download en_core_web_sm   # NER model for step 4
 ```
 
 All scripts are run from the repository root, and their default paths are
@@ -50,20 +51,23 @@ Already included, for reference:
 
 ## Repository layout
 
-```
+```text
 datasets/
   raw/banned/      PEN America yearly CSVs (BannedBooks2021-2022.csv ... 2024-2025.csv)
   raw/books/       booksummaries.txt (CMU) + Goodreads files (downloaded, git-ignored)
   interim/         goodreads_clean.pkl cache (git-ignored)
   clean/           pipeline outputs
+  topics/          BERTopic model, topic shares, embedding cache (git-ignored)
 csv_preprocess.py    step 1: clean the PEN America ban lists
 books_preprocess.py  step 2: clean and merge CMU + Goodreads summaries
 merge.py             step 3: match banned books to summaries and build the control group
+text_preprocess.py   step 4: build one leakage-scrubbed text per book, train/test split
+bertopic1.py         step 5: fit BERTopic on train, export topic shares per book
 ```
 
 ## Pipeline
 
-Run the three steps in order, from the repository root (the default paths are
+Run the steps in order, from the repository root (the default paths are
 relative to it). With no arguments, each script uses the default paths shown.
 Use `-h` on any script to see its options.
 
@@ -71,11 +75,13 @@ Use `-h` on any script to see its options.
 python scripts/csv_preprocess.py     # -> datasets/clean/bannedT_titles_clean.csv
 python scripts/books_preprocess.py   # -> datasets/clean/books_summaries_merged.csv
 python scripts/merge.py              # -> datasets/clean/final_book_dataset.csv
+python scripts/text_preprocess.py    # -> datasets/clean/topic_train.csv, topic_test.csv
+python scripts/bertopic1.py          # -> datasets/topics/
 ```
 
 `python -m scripts.merge` (etc.) works too.
 
-Steps 1 and 2 are independent. Step 3 needs both of their outputs.
+Steps 1 and 2 are independent. Step 3 needs both of their outputs. Steps 4 and 5 run one after the other on the output of step 3.
 
 ### 1. `csv_preprocess.py`: clean the ban lists
 
@@ -138,3 +144,35 @@ The run takes a few minutes, mostly for the control-group matching against about
 
 With the current data, 3,455 of the 8,102 banned books have a summary. The
 final dataset has 6,910 rows: 3,455 banned and 3,455 controls.
+
+### 4. `text_preprocess.py`: topic-model texts and split
+
+**Input:** `datasets/clean/final_book_dataset.csv`.
+**Output:** `datasets/clean/topic_train.csv` and `topic_test.csv` (80/20, stratified on `Banned Status`).
+
+- One text per book: the Goodreads summary, or the CMU summary when there is none. CMU summaries of banned books are much longer than those of controls, so Goodreads is preferred to avoid a length signal.
+- Drops non-English texts (share of common English stopwords below 0.08). Most of them are controls, so they would otherwise form "language" topics that leak the label.
+- Removes label leakage: character names (spaCy `PERSON` entities), the book's own title, sentences mentioning bans, challenges, censorship, awards, prizes, bestseller lists or praise, and quoted review blurbs (`"..." —Source`).
+- Drops texts shorter than `--min-words` (default 15) after cleaning, and exact duplicates.
+- Prints how many books each step dropped per class, and the median text length per class.
+
+Options: `--input`, `--train-out`, `--test-out`, `--seed`, `--test-size`, `--min-words`.
+
+| Book ID | Banned Status | Text |
+|---------|---------------|------|
+
+### 5. `bertopic1.py`: topic extraction
+
+**Input:** the outputs of step 4. **Output:** `datasets/topics/`.
+
+- Embeds texts with `all-mpnet-base-v2` (cached in `embeddings_{train,test}.npy`; delete them after changing the texts or the model).
+- Fits BERTopic on the training texts only, without labels: UMAP (5 dims, cosine, seeded with `--seed`), HDBSCAN (`--min-topic-size`, default 25), English stopwords, uni- and bigrams. Outliers (topic -1) are then reassigned to their closest topic by embedding.
+- Each book becomes a vector of topic shares from `approximate_distribution` (rows sum to 1). Test books only go through `transform`; the model never sees them during fitting.
+- `--stability-seeds 0 1 2 3 4` refits with those UMAP seeds and reports, for every pair, the adjusted Rand index of topic assignments and the mean best top-10-word Jaccard between topics.
+
+| File | Content |
+|------|---------|
+| `model/` | fitted BERTopic model (reload with `BERTopic.load`) |
+| `topic_info.csv` | topic id, size, top words, representative docs |
+| `train_topic_dist.csv`, `test_topic_dist.csv` | `Book ID, Banned Status, topic_0 ... topic_K-1` |
+| `stability.csv` | `seed_a, seed_b, topics_a, topics_b, ari, word_jaccard` |
