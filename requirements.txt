@@ -1,6 +1,11 @@
 pandas==3.0.6
 rapidfuzz==3.14.6
 tqdm==4.70.1
-scikit-learn==1.9.1
 joblib==1.6.0
 matplotlib==3.11.2
+bertopic==0.17.4
+hdbscan==0.8.44
+scikit-learn==1.9.1
+sentence-transformers==6.1.0
+spacy==3.8.16
+umap-learn==0.5.12
