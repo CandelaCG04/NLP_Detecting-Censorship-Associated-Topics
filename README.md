@@ -3,7 +3,8 @@
 Builds a dataset for studying which topics are associated with book censorship.
 Books banned in US schools (PEN America) are paired with their plot summaries
 (CMU Book Summary Dataset and Goodreads). Each banned book is matched to a
-non-banned control book with similar genres and publication date.
+non-banned control book with similar genres and publication date. BERTopic is
+then fitted on the summaries to represent every book as a vector of topic shares.
 
 ## Setup
 
@@ -53,16 +54,17 @@ Already included, for reference:
 
 ```text
 datasets/
-  raw/banned/      PEN America yearly CSVs (BannedBooks2021-2022.csv ... 2024-2025.csv)
-  raw/books/       booksummaries.txt (CMU) + Goodreads files (downloaded, git-ignored)
-  interim/         goodreads_clean.pkl cache (git-ignored)
-  clean/           pipeline outputs
-  topics/          BERTopic model, topic shares, embedding cache (git-ignored)
-csv_preprocess.py    step 1: clean the PEN America ban lists
-books_preprocess.py  step 2: clean and merge CMU + Goodreads summaries
-merge.py             step 3: match banned books to summaries and build the control group
-text_preprocess.py   step 4: build one leakage-scrubbed text per book, train/test split
-bertopic1.py         step 5: fit BERTopic on train, export topic shares per book
+  raw/banned/        PEN America yearly CSVs (BannedBooks2021-2022.csv ... 2024-2025.csv)
+  raw/books/         booksummaries.txt (CMU) + Goodreads files (downloaded, git-ignored)
+  clean/             final_book_dataset.csv, topic_train.csv, topic_test.csv
+  topics/            model.md, topic_info.csv, train/test_topic_dist.csv, stability.csv
+scripts/
+  csv_preprocess.py    step 1: clean the PEN America ban lists
+  books_preprocess.py  step 2: clean and merge CMU + Goodreads summaries
+  merge.py             step 3: match banned books to summaries and build the control group
+  text_preprocess.py   step 4: build one leakage-scrubbed text per book, train/test split
+  bertopic1.py         step 5: fit BERTopic on train, export topic shares per book
+requirements.txt
 ```
 
 ## Pipeline
@@ -105,7 +107,7 @@ Steps 1 and 2 are independent. Step 3 needs both of their outputs. Steps 4 and 5
 
 - Drops books missing an author, title or summary.
 - Matches CMU and Goodreads books by fuzzy author and title, comparing each title with and without its subtitle. A pair counts as the same book when the title score is at least `--title-threshold` (default 90) and the author score is at least `--author-threshold` (default 85). Each book is matched at most once; ties go to the more-rated Goodreads edition.
-- Publication Date and Genres come from CMU when available, otherwise from Goodreads. Goodreads dates are those of the most-rated edition, not the original work. Dates are `YYYY`, `YYYY-MM` or `YYYY-MM-DD`, and genres are joined with `; `.
+- Publication Date and Genres come from CMU when available, otherwise from Goodreads. Goodreads dates are those of the most-rated edition, not the original work. Dates are `YYYY`, `YYYY-MM` or `YYYY-MM-DD`, and genres are joined with `;`.
 - Books found in only one dataset are kept, with the other summary left empty. Use `--matched-only` to keep only books found in both.
 - The first run parses the full Goodreads file and caches the result in `datasets/interim/goodreads_clean.pkl`. Delete the cache (or point `--cache` elsewhere) to force a re-parse.
 
@@ -156,6 +158,19 @@ final dataset has 6,910 rows: 3,455 banned and 3,455 controls.
 - Drops texts shorter than `--min-words` (default 15) after cleaning, and exact duplicates.
 - Prints how many books each step dropped per class, and the median text length per class.
 
+With the current data:
+
+| Stage | Total | Banned | Control |
+|-------|------:|-------:|--------:|
+| `final_book_dataset.csv` | 6,910 | 3,455 | 3,455 |
+| dropped: non-English | 254 | 46 | 208 |
+| dropped: too short (< 15 words) | 104 | 44 | 60 |
+| dropped: duplicate text | 2 | 2 | 0 |
+| **`topic_train.csv`** | **5,240** | **2,690** | **2,550** |
+| **`topic_test.csv`** | **1,310** | **673** | **637** |
+
+After cleaning, the median text length is 124 words (banned) and 120 (control) in train, and 126 and 125 in test, so length no longer separates the classes.
+
 Options: `--input`, `--train-out`, `--test-out`, `--seed`, `--test-size`, `--min-words`.
 
 | Book ID | Banned Status | Text |
@@ -170,9 +185,15 @@ Options: `--input`, `--train-out`, `--test-out`, `--seed`, `--test-size`, `--min
 - Each book becomes a vector of topic shares from `approximate_distribution` (rows sum to 1). Test books only go through `transform`; the model never sees them during fitting.
 - `--stability-seeds 0 1 2 3 4` refits with those UMAP seeds and reports, for every pair, the adjusted Rand index of topic assignments and the mean best top-10-word Jaccard between topics.
 
+The model choices and parameters are documented in [`datasets/topics/model.md`](datasets/topics/model.md).
+
+With the current data, the model finds 24 topics. Refits with seeds 0, 1 and 2 agree with a mean adjusted Rand index of 0.79 and a mean top-word Jaccard of 0.73. The first run takes about 18 minutes on CPU, mostly for the embeddings. Once they are cached, a run takes about 1.5 minutes.
+
 | File | Content |
 |------|---------|
-| `model/` | fitted BERTopic model (reload with `BERTopic.load`) |
+| `model.md` | model choices, parameters and results |
+| `model/` | fitted BERTopic model (reload with `BERTopic.load`; git-ignored) |
+| `embeddings_{train,test}.npy` | cached sentence embeddings (git-ignored) |
 | `topic_info.csv` | topic id, size, top words, representative docs |
 | `train_topic_dist.csv`, `test_topic_dist.csv` | `Book ID, Banned Status, topic_0 ... topic_K-1` |
 | `stability.csv` | `seed_a, seed_b, topics_a, topics_b, ari, word_jaccard` |
