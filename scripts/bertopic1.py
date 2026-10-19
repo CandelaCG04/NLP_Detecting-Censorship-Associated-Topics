@@ -62,9 +62,10 @@ def embed(docs: list[str], encoder: SentenceTransformer, cache: Path) -> np.ndar
     return emb
 
 
-def _vectorizer() -> CountVectorizer:
-    # BERTopic fits this on one document per topic, so min_df would count topics, not books
-    return CountVectorizer(stop_words="english", ngram_range=(1, 2))
+def _vectorizer(docs: list[str]) -> CountVectorizer:
+    # BERTopic fits this on one document per topic, so min_df is applied to the books here instead
+    vocab = CountVectorizer(stop_words="english", ngram_range=(1, 2), min_df=5).fit(docs).vocabulary_
+    return CountVectorizer(stop_words="english", ngram_range=(1, 2), vocabulary=vocab)
 
 
 def fit_model(docs: list[str], emb: np.ndarray, encoder, seed: int, min_topic_size: int) -> BERTopic:
@@ -73,13 +74,13 @@ def fit_model(docs: list[str], emb: np.ndarray, encoder, seed: int, min_topic_si
         umap_model=UMAP(n_neighbors=15, n_components=5, min_dist=0.0, metric="cosine", random_state=seed),
         hdbscan_model=HDBSCAN(min_cluster_size=min_topic_size, metric="euclidean",
                               cluster_selection_method="eom", prediction_data=True),
-        vectorizer_model=_vectorizer(),
+        vectorizer_model=_vectorizer(docs),
     )
     topics, _ = model.fit_transform(docs, emb)
     # without this, topic -1 holds a large share of the books
     if -1 in topics:
         topics = model.reduce_outliers(docs, topics, strategy="embeddings", embeddings=emb)
-        model.update_topics(docs, topics=topics, vectorizer_model=_vectorizer())
+        model.update_topics(docs, topics=topics, vectorizer_model=_vectorizer(docs))
     return model
 
 
