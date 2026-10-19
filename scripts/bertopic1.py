@@ -5,12 +5,14 @@ as a vector of topic shares.
 
 Outputs, in --out-dir:
 
-    model/                  fitted BERTopic model (safetensors)
-    topic_info.csv          topic id, size, top words, representative docs
-    train_topic_dist.csv    Book ID, Banned Status, topic_0 .. topic_K-1 (rows sum to 1)
-    test_topic_dist.csv     same, for the test books (transform only, never fitted)
-    stability.csv           ARI / top-word Jaccard between refits with other seeds
-    embeddings_*.npy        cached sentence embeddings
+    embeddings_*.npy            cached sentence embeddings (shared by all runs)
+    summary.csv                 one row per run: topics, largest topic share, stability
+    min<size>/                  one folder per --min-topic-size value:
+        model/                  fitted BERTopic model (safetensors)
+        topic_info.csv          topic id, size, top words, representative docs
+        train_topic_dist.csv    Book ID, Banned Status, topic_0 .. topic_K-1 (rows sum to 1)
+        test_topic_dist.csv     same, for the test books (transform only, never fitted)
+        stability.csv           ARI / top-word Jaccard between refits with other seeds
 
 """
 from __future__ import annotations
@@ -61,7 +63,8 @@ def embed(docs: list[str], encoder: SentenceTransformer, cache: Path) -> np.ndar
 
 
 def _vectorizer() -> CountVectorizer:
-    return CountVectorizer(stop_words="english", ngram_range=(1, 2), min_df=5)
+    # BERTopic fits this on one document per topic, so min_df would count topics, not books
+    return CountVectorizer(stop_words="english", ngram_range=(1, 2))
 
 
 def fit_model(docs: list[str], emb: np.ndarray, encoder, seed: int, min_topic_size: int) -> BERTopic:
@@ -130,7 +133,8 @@ def main() -> None:
     ap.add_argument("--test", type=Path, default=TEST_PATH)
     ap.add_argument("--out-dir", type=Path, default=OUT_DIR)
     ap.add_argument("--embedding-model", default=EMBEDDING_MODEL)
-    ap.add_argument("--min-topic-size", type=int, default=MIN_TOPIC_SIZE)
+    ap.add_argument("--min-topic-size", type=int, nargs="+", default=[MIN_TOPIC_SIZE],
+                    help="one run per value, each saved to <out-dir>/min<size>/, e.g. 20 35 60 100")
     ap.add_argument("--seed", type=int, default=RANDOM_SEED)
     ap.add_argument("--stability-seeds", type=int, nargs="*", default=[],
                     help="extra UMAP seeds to refit with, e.g. 0 1 2 3 4")
@@ -145,26 +149,38 @@ def main() -> None:
     train_emb = embed(train_docs, encoder, args.out_dir / "embeddings_train.npy")
     test_emb = embed(test_docs, encoder, args.out_dir / "embeddings_test.npy")
 
-    model = fit_model(train_docs, train_emb, encoder, args.seed, args.min_topic_size)
-    info = model.get_topic_info()
-    info.to_csv(args.out_dir / "topic_info.csv", index=False)
-    print(f"Topics     : {(info['Topic'] != -1).sum()}")
+    summary = []
+    for size in args.min_topic_size:
+        out = args.out_dir / f"min{size}"
+        out.mkdir(exist_ok=True)
+        print(f"\n=== min topic size {size} -> {out}")
+        model = fit_model(train_docs, train_emb, encoder, args.seed, size)
+        info = model.get_topic_info()
+        info.to_csv(out / "topic_info.csv", index=False)
+        topics = info[info["Topic"] != -1]
+        print(f"Topics     : {len(topics)}")
 
-    test_topics, _ = model.transform(test_docs, test_emb)
-    # reduce_outliers refuses once the model has no -1 topic, so map test outliers to the closest topic directly
-    nearest = cosine_similarity(test_emb, model.topic_embeddings_[model._outliers:]).argmax(axis=1)
-    test_topics = np.where(np.asarray(test_topics) == -1, nearest, test_topics)
-    save_dist(train, topic_shares(model, train_docs, model.topics_), args.out_dir / "train_topic_dist.csv")
-    save_dist(test, topic_shares(model, test_docs, test_topics), args.out_dir / "test_topic_dist.csv")
+        # closest topic by embedding, like the train outliers; transform() can return stale ids after update_topics
+        # topic_embeddings_ keeps a stale -1 row after reduce_outliers, so take the last len(topics) rows
+        test_topics = cosine_similarity(test_emb, model.topic_embeddings_[-len(topics):]).argmax(axis=1)
+        save_dist(train, topic_shares(model, train_docs, model.topics_), out / "train_topic_dist.csv")
+        save_dist(test, topic_shares(model, test_docs, test_topics), out / "test_topic_dist.csv")
 
-    model.save(args.out_dir / "model", serialization="safetensors", save_ctfidf=True,
-               save_embedding_model=args.embedding_model)
+        model.save(out / "model", serialization="safetensors", save_ctfidf=True,
+                   save_embedding_model=args.embedding_model)
 
-    if args.stability_seeds:
-        stab = stability(train_docs, train_emb, encoder, args.stability_seeds, args.min_topic_size)
-        stab.to_csv(args.out_dir / "stability.csv", index=False)
-        print(stab.round(3).to_string(index=False))
-        print(f"Mean ARI {stab['ari'].mean():.3f}, mean top-word Jaccard {stab['word_jaccard'].mean():.3f}")
+        row = {"min_topic_size": size, "topics": len(topics),
+               "largest_topic_share": topics["Count"].max() / len(train_docs)}
+        if args.stability_seeds:
+            stab = stability(train_docs, train_emb, encoder, args.stability_seeds, size)
+            stab.to_csv(out / "stability.csv", index=False)
+            print(stab.round(3).to_string(index=False))
+            row |= {"mean_ari": stab["ari"].mean(), "mean_word_jaccard": stab["word_jaccard"].mean()}
+        summary.append(row)
+
+    summary = pd.DataFrame(summary)
+    summary.to_csv(args.out_dir / "summary.csv", index=False)
+    print("\n" + summary.round(3).to_string(index=False))
     print(f"\nSaved -> {args.out_dir}")
 
 
