@@ -1,0 +1,185 @@
+
+###############################################################################
+# [5/11] 28t: datasets\topics\topics_m\28t
+###############################################################################
+Merged 6550 books with 28 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.636
+  previous setup (raw shares, similarity weights): 0.636
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.638
+  previous setup (raw shares, no pairs, L2): 0.630
+  best LogReg converged (20 of 5000 iterations)
+
+LogReg intercept: 0.057, non-zero weights: 406 of 406
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                                                      feature   weight
+                                 8_gender_gay_transgender_sex 0.069797
+    1_murder_killer_police_case x 17_war_nazi_holocaust_world 0.050125
+                             2_black_american_history_african 0.047306
+       0_school_girl_love_life x 8_gender_gay_transgender_sex 0.045319
+       1_murder_killer_police_case x 4_king_dragon_magic_help 0.043934
+9_vampire_vampires_dresden_lestat x 23_sea_captain_ship_ocean 0.042357
+            0_school_girl_love_life x 18_school_old_life_year 0.039843
+   0_school_girl_love_life x 2_black_american_history_african 0.038312
+8_gender_gay_transgender_sex x 11_war_german_germany_military 0.036543
+                                      0_school_girl_love_life 0.036335
+Features pushing towards not banned:
+                                                            feature    weight
+                               5_book_children_little_illustrations -0.052213
+   5_book_children_little_illustrations x 23_sea_captain_ship_ocean -0.047903
+          6_art_artists_artist_book x 26_drug_life_disorder_illness -0.043517
+         11_war_german_germany_military x 23_sea_captain_ship_ocean -0.042511
+   5_book_children_little_illustrations x 6_art_artists_artist_book -0.039161
+                                         19_earth_planet_space_ship -0.037685
+                                           4_king_dragon_magic_help -0.035246
+5_book_children_little_illustrations x 20_novel_american_life_story -0.035004
+           1_murder_killer_police_case x 27_magic_dark_mother_world -0.034617
+         4_king_dragon_magic_help x 25_japanese_japan_samurai_tokyo -0.033918
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.582   0.649     0.577     0.580    0.605
+  LogReg      0.575   0.602     0.566     0.567    0.597
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.58      0.51      0.54       637
+      banned       0.58      0.65      0.61       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[323 314]
+ [236 437]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.56      0.53      0.54       637
+      banned       0.58      0.60      0.59       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.57      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[338 299]
+ [268 405]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.424, LogReg score: 0.529
+kNN 10 nearest neighbours (of the 151 used):
+                                                    title  banned  similarity
+                                                Federales   False       0.936
+                         State of Alliance (Collapse, #5)   False       0.934
+                                          Never Fall Down    True       0.933
+                   The Visual Dictionary of The Civil War    True       0.932
+                                             Sarah Bishop    True       0.929
+                                               Collateral    True       0.925
+                                              Double Star   False       0.923
+                                       The Imitation Game    True       0.905
+                        Blufire (Desirable Creatures, #2)   False       0.897
+My Last Skirt: The Story of Jennie Hodgers, Union Soldier    True       0.895
+LogReg largest feature contributions (intercept 0.057):
+                                                    feature  value  contribution
+  11_war_german_germany_military x 15_family_el_mother_life  4.835        -0.083
+   11_war_german_germany_military x 18_school_old_life_year  5.267        -0.076
+11_war_german_germany_military x 27_magic_dark_mother_world  3.790        -0.073
+   11_war_german_germany_military x 14_love_life_woman_time  5.910         0.068
+                             11_war_german_germany_military  2.772        -0.061
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.344, LogReg score: 0.315
+kNN 10 nearest neighbours (of the 151 used):
+                                           title  banned  similarity
+                               Princess Treasury   False       1.000
+                          The Seven Lady Godivas   False       0.965
+                    Not Norman: A Goldfish Story    True       0.963
+The Cat Who Came for Christmas (Compleat Cat #1)   False       0.944
+          Winter Falls: A Tale of the Snow Queen   False       0.915
+                                    Pinkalicious    True       0.913
+                                Revolting Rhymes    True       0.913
+               The Annotated Classic Fairy Tales   False       0.911
+                                   Amazing Grace    True       0.909
+                                 Clockwork Angel    True       0.909
+LogReg largest feature contributions (intercept 0.057):
+                                                            feature  value  contribution
+5_book_children_little_illustrations x 16_fairy_tale_tales_princess 14.453        -0.351
+                               5_book_children_little_illustrations  2.383        -0.124
+                                       16_fairy_tale_tales_princess  4.711        -0.113
+                                            0_school_girl_love_life -1.060        -0.039
+                                   2_black_american_history_african -0.785        -0.037
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.626, LogReg score: 0.738
+kNN 10 nearest neighbours (of the 151 used):
+                                                title  banned  similarity
+                                           Whale Talk    True       0.945
+                              Broken Beautiful Hearts    True       0.927
+                                         Rainbow High    True       0.926
+                                       Crossing Lines    True       0.911
+            The Impossible Race (Cragbridge Hall, #3)   False       0.909
+                                    Playing the Field    True       0.903
+                                              Swagger    True       0.903
+Mermaid Treasure Hunt (Dora and Friends) (Pictureback   False       0.900
+                                      Perpetual Check    True       0.900
+                                            High Heat    True       0.899
+LogReg largest feature contributions (intercept 0.057):
+                                                 feature  value  contribution
+10_team_baseball_sports_player x 22_goku_manga_world_kun  9.882         0.197
+10_team_baseball_sports_player x 18_school_old_life_year  5.969         0.148
+0_school_girl_love_life x 21_cia_world_time_intelligence  6.676         0.122
+18_school_old_life_year x 21_cia_world_time_intelligence  5.572         0.108
+21_cia_world_time_intelligence x 22_goku_manga_world_kun  6.379         0.102
+
+=== Noragami: Stray God, Vol. 14 (Noragami: Stray God, #14) (Book ID 50) - wrongly predicted not banned ===
+True: banned, kNN score: 0.567, LogReg score: 0.454
+kNN 10 nearest neighbours (of the 151 used):
+                                     title  banned  similarity
+                    The New American Bible    True       0.953
+           Ties That Bind, Ties That Break    True       0.939
+                       Reading in the Dark   False       0.924
+                             The Moviegoer    True       0.900
+                           The Great Alone    True       0.899
+The Dark Descent of Elizabeth Frankenstein    True       0.899
+                        Here Lies the Body   False       0.899
+                                   Lottery   False       0.899
+                  Dirty girl called girtie   False       0.899
+                                    Rumble    True       0.888
+LogReg largest feature contributions (intercept 0.057):
+                                                           feature  value  contribution
+     3_god_world_ancient_history x 25_japanese_japan_samurai_tokyo  6.779         0.103
+   5_book_children_little_illustrations x 15_family_el_mother_life  3.205        -0.091
+            3_god_world_ancient_history x 15_family_el_mother_life  4.124        -0.090
+3_god_world_ancient_history x 5_book_children_little_illustrations  3.390        -0.071
+        15_family_el_mother_life x 25_japanese_japan_samurai_tokyo  4.655         0.067
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_28topics
+
+28t took 0:01:35 (total so far 0:03:59)

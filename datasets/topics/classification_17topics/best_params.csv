@@ -1,10 +1,8 @@
 model,param,value,cv_roc_auc
-kNN,knn__n_neighbors,201,0.6023569502150302
-kNN,knn__weights,<function cosine_similarity_weights at 0x0000021621A7EF20>,0.6023569502150302
-kNN,transform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)",0.6023569502150302
-LogReg,logreg__C,0.001,0.6103152562140097
-LogReg,logreg__l1_ratio,0.0,0.6103152562140097
-LogReg,pairs,passthrough,0.6103152562140097
-LogReg,transform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)",0.6103152562140097
+kNN,knn__n_neighbors,101,0.6228449595451564
+kNN,knn__weights,<function cosine_similarity_weights at 0x00000228F74687C0>,0.6228449595451564
+kNN,transform,passthrough,0.6228449595451564
+LogReg,logreg__C,0.001,0.6259669072089803
+LogReg,logreg__l1_ratio,0.0,0.6259669072089803
+LogReg,pairs,"PolynomialFeatures(include_bias=False, interaction_only=True)",0.6259669072089803
+LogReg,transform,passthrough,0.6259669072089803

@@ -1,0 +1,2086 @@
+
+###############################################################################
+# [1/11] 14t: datasets\topics\topics_m\14t
+###############################################################################
+Merged 6550 books with 14 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.623
+  previous setup (raw shares, similarity weights): 0.623
+LogReg best params: {'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.622
+  previous setup (raw shares, no pairs, L2): 0.620
+  best LogReg converged (21 of 5000 iterations)
+
+LogReg intercept: 0.055, non-zero weights: 13 of 14
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                      feature    weight
+12_gender_gay_transgender_sex  0.258926
+       0_love_school_life_new  0.190038
+ 2_life_story_american_family  0.133921
+ 11_team_baseball_sports_game  0.074147
+    9_art_artists_artist_book  0.071771
+    6_family_world_love_story  0.061384
+   10_family_house_mother_new  0.001272
+  5_god_ancient_world_history  0.000000
+  3_murder_killer_case_police -0.006505
+  13_comics_graphic_new_comic -0.032156
+Features pushing towards not banned:
+                    feature    weight
+ 7_book_children_little_new -0.176752
+  8_ship_earth_planet_world -0.140906
+   4_war_world_german_story -0.041904
+    1_world_life_magic_time -0.040652
+13_comics_graphic_new_comic -0.032156
+3_murder_killer_case_police -0.006505
+5_god_ancient_world_history  0.000000
+ 10_family_house_mother_new  0.001272
+  6_family_world_love_story  0.061384
+  9_art_artists_artist_book  0.071771
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.577   0.654     0.572     0.576    0.600
+  LogReg      0.578   0.632     0.572     0.574    0.601
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.49      0.53       637
+      banned       0.58      0.65      0.61       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.57      0.57      1310
+weighted avg       0.58      0.58      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[314 323]
+ [233 440]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.51      0.54       637
+      banned       0.58      0.63      0.60       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.57      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[327 310]
+ [248 425]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.429, LogReg score: 0.554
+kNN 10 nearest neighbours (of the 151 used):
+                                    title  banned  similarity
+                                Federales   False       0.991
+         State of Alliance (Collapse, #5)   False       0.988
+                             Sarah Bishop    True       0.981
+          First Year (The Black Mage, #1)   False       0.980
+A Stranger to Command (Crown & Court 0.5)   False       0.975
+                              Double Star   False       0.973
+        She-Hulk, Volume 1: Deconstructed   False       0.970
+                          Heart of Thorns    True       0.965
+   The Visual Dictionary of The Civil War    True       0.964
+                        Hero on a Bicycle    True       0.964
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+12_gender_gay_transgender_sex -0.561        -0.145
+   7_book_children_little_new -0.797         0.141
+    8_ship_earth_planet_world -0.644         0.091
+     4_war_world_german_story  1.824        -0.076
+       0_love_school_life_new  0.378         0.072
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.297, LogReg score: 0.264
+kNN 10 nearest neighbours (of the 151 used):
+                                                                                                                                          title  banned  similarity
+                                                                                                  Dante's Purgatorio; Adapted by Marcus Sanders   False       1.000
+                                                                                                                              Princess Treasury   False       0.975
+                                                                                                                            The Gingerbread Man   False       0.973
+                                                                                                                     The Saints' Favorite Books   False       0.964
+                                                                           The Riddles of Harry Potter: Secret Passages and Interpretive Quests   False       0.961
+A Child's Introduction to Poetry: Listen While You Learn about the Magic Words That Have Moved Mountains, Won Battles and Made Us Laugh and Cry   False       0.953
+                                                                                                Fatale, Book Five: Curse the Demon (Fatale, #5)   False       0.947
+                                                                                                                                Someone Like Me   False       0.943
+                                                                               Secret Societies: Inside History's Most Mysterious Organizations   False       0.932
+                                                                                                                                  Seaside Dream   False       0.930
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+   7_book_children_little_new  3.033        -0.536
+       0_love_school_life_new -1.325        -0.252
+12_gender_gay_transgender_sex -0.561        -0.145
+ 2_life_story_american_family -1.067        -0.143
+    8_ship_earth_planet_world -0.644         0.091
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.560, LogReg score: 0.611
+kNN 10 nearest neighbours (of the 151 used):
+                               title  banned  similarity
+                       Blanca & Roja    True       0.999
+                   The Rookie Bookie    True       0.995
+                     Black and White    True       0.990
+                        Rainbow High    True       0.988
+                          Whale Talk    True       0.985
+             I Love You, Beth Cooper    True       0.984
+Wicked Intentions (Wicked Games, #3)   False       0.982
+                   He Said, She Said    True       0.979
+                     Perpetual Check    True       0.972
+                           High Heat    True       0.972
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+ 11_team_baseball_sports_game  3.891         0.289
+       0_love_school_life_new  1.037         0.197
+12_gender_gay_transgender_sex -0.561        -0.145
+ 2_life_story_american_family -1.067        -0.143
+   7_book_children_little_new -0.797         0.141
+
+=== Imbeciles: The Supreme Court, American Eugenics, and the Sterilization of Carrie Buck (Book ID 55) - wrongly predicted not banned ===
+True: banned, kNN score: 0.568, LogReg score: 0.459
+kNN 10 nearest neighbours (of the 151 used):
+                                                                       title  banned  similarity
+                                                           Samir and Yonatan   False       0.995
+                                                                       SP4RX    True       0.995
+                                                      If He Had Been with Me    True       0.993
+Once Upon a Time: Behind the Fairy Tale of Princess Grace and Prince Rainier   False       0.992
+                                                            The White Dragon    True       0.992
+                                                                          We   False       0.991
+                                                 In the Beauty of the Lilies    True       0.982
+                                                          Time and the River   False       0.971
+                                                        Beauty and the Beast   False       0.964
+                                                                 Gallowglass   False       0.963
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+ 2_life_story_american_family  2.089         0.280
+       0_love_school_life_new -1.325        -0.252
+   7_book_children_little_new  0.891        -0.157
+12_gender_gay_transgender_sex -0.561        -0.145
+    8_ship_earth_planet_world -0.644         0.091
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_14topics
+
+14t took 0:00:20 (total so far 0:00:20)
+
+###############################################################################
+# [2/11] 17t: datasets\topics\topics_m\17t
+###############################################################################
+Merged 6550 books with 17 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 101, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.623
+  previous setup (raw shares, similarity weights): 0.623
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}, CV ROC-AUC: 0.626
+  previous setup (raw shares, no pairs, L2): 0.623
+  best LogReg converged (19 of 5000 iterations)
+
+LogReg intercept: 0.055, non-zero weights: 153 of 153
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                                                   feature   weight
+                             12_gender_gay_transgender_sex 0.086035
+    1_school_life_love_girl x 11_team_baseball_sports_game 0.066903
+  10_ghost_nest_house_dead x 12_gender_gay_transgender_sex 0.049303
+12_gender_gay_transgender_sex x 13_india_family_world_love 0.045772
+0_story_life_american_family x 5_world_god_ancient_history 0.045282
+        1_school_life_love_girl x 16_love_life_woman_story 0.044885
+                                   1_school_life_love_girl 0.043182
+       1_school_life_love_girl x 9_art_artists_artist_book 0.041996
+   1_school_life_love_girl x 12_gender_gay_transgender_sex 0.040440
+    0_story_life_american_family x 1_school_life_love_girl 0.038035
+Features pushing towards not banned:
+                                                  feature    weight
+                               6_book_children_little_new -0.068482
+      7_ship_earth_time_planet x 10_ghost_nest_house_dead -0.048368
+                                4_magic_king_world_dragon -0.046431
+   3_murder_police_killer_case x 16_love_life_woman_story -0.045177
+     2_war_world_story_german x 4_magic_king_world_dragon -0.043511
+                                 7_ship_earth_time_planet -0.042523
+3_murder_police_killer_case x 14_comics_graphic_new_comic -0.040493
+                                 2_war_world_story_german -0.040436
+0_story_life_american_family x 6_book_children_little_new -0.040422
+     7_ship_earth_time_planet x 9_art_artists_artist_book -0.036128
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.570   0.657     0.565     0.569    0.596
+  LogReg      0.576   0.623     0.568     0.570    0.591
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.48      0.52       637
+      banned       0.57      0.66      0.61       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.56      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[304 333]
+ [231 442]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.56      0.51      0.54       637
+      banned       0.58      0.62      0.60       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.57      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[328 309]
+ [254 419]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.436, LogReg score: 0.519
+kNN 10 nearest neighbours (of the 101 used):
+                                           title  banned  similarity
+                                     Double Star   False       0.989
+                                      Collateral    True       0.983
+                                    Sarah Bishop    True       0.981
+               Blufire (Desirable Creatures, #2)   False       0.979
+               She-Hulk, Volume 1: Deconstructed   False       0.977
+                                     Lilac Girls    True       0.973
+          The Visual Dictionary of The Civil War    True       0.968
+                                       Federales   False       0.967
+               Playing Atari with Saddam Hussein   False       0.965
+The Never Hero (Chronicles Of Jonathan Tibbs #1)   False       0.965
+LogReg largest feature contributions (intercept 0.055):
+                                                feature  value  contribution
+   2_war_world_story_german x 4_magic_king_world_dragon  1.659        -0.072
+0_story_life_american_family x 2_war_world_story_german  2.081        -0.065
+                               2_war_world_story_german  1.497        -0.061
+    2_war_world_story_german x 16_love_life_woman_story  3.513         0.055
+     1_school_life_love_girl x 2_war_world_story_german  2.301         0.043
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.229, LogReg score: 0.283
+kNN 10 nearest neighbours (of the 101 used):
+                                                                                                                                          title  banned  similarity
+                                                                                                                              Princess Treasury   False       0.987
+                                                                           The Riddles of Harry Potter: Secret Passages and Interpretive Quests   False       0.967
+                                                                                                                     The Saints' Favorite Books   False       0.952
+A Child's Introduction to Poetry: Listen While You Learn about the Magic Words That Have Moved Mountains, Won Battles and Made Us Laugh and Cry   False       0.949
+                                                                                                                          Red: A Crayon's Story    True       0.940
+                                                                                                Fatale, Book Five: Curse the Demon (Fatale, #5)   False       0.936
+                                                                                                                          Five Bouncing Bunnies   False       0.935
+                                                                                                                            The Gingerbread Man   False       0.933
+                                                                                                               To Every Thing There Is A Season    True       0.930
+                                                                        But He Was Good to His Mother: The Lives and Crimes of Jewish Gangsters   False       0.921
+LogReg largest feature contributions (intercept 0.055):
+                                                 feature  value  contribution
+5_world_god_ancient_history x 6_book_children_little_new 16.328        -0.501
+                              6_book_children_little_new  4.432        -0.304
+                                 1_school_life_love_girl -0.770        -0.033
+                             15_family_life_story_mother -0.864        -0.030
+      1_school_life_love_girl x 16_love_life_woman_story -0.554        -0.025
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.593, LogReg score: 0.679
+kNN 10 nearest neighbours (of the 101 used):
+                  title  banned  similarity
+             Whale Talk    True       0.999
+I Love You, Beth Cooper    True       0.997
+        Black and White    True       0.994
+      He Said, She Said    True       0.987
+           Rainbow High    True       0.986
+          Blanca & Roja    True       0.982
+Broken Beautiful Hearts    True       0.977
+         So Hard to Say    True       0.977
+             Dance Team    True       0.974
+              High Heat    True       0.973
+LogReg largest feature contributions (intercept 0.055):
+                                               feature  value  contribution
+1_school_life_love_girl x 11_team_baseball_sports_game 10.086         0.675
+                               1_school_life_love_girl  1.322         0.057
+                            6_book_children_little_new -0.480         0.033
+                           15_family_life_story_mother -0.864        -0.030
+                          11_team_baseball_sports_game  5.612         0.029
+
+=== Golden Boy (Book ID 49) - wrongly predicted not banned ===
+True: banned, kNN score: 0.466, LogReg score: 0.467
+kNN 10 nearest neighbours (of the 101 used):
+                                                            title  banned  similarity
+                                                       The Taking    True       0.989
+                                    The Country of Ice Cream Star    True       0.988
+                                                     The Talisman    True       0.982
+                                                        Departure   False       0.982
+               Please Read (if at all possible): The Girl Project   False       0.980
+                                          The Inheritance of Loss    True       0.979
+                  One Condition (The Lust List: Kaidan Stone, #1)   False       0.975
+It's Bigger Than Hip Hop: The Rise of the Post-Hip-Hop Generation    True       0.974
+                                                    This Is Sadie   False       0.974
+                              Foxfire: Confessions of a Girl Gang    True       0.974
+LogReg largest feature contributions (intercept 0.055):
+                                                   feature  value  contribution
+      2_war_world_story_german x 4_magic_king_world_dragon  0.664        -0.029
+ 11_team_baseball_sports_game x 13_india_family_world_love  1.347         0.029
+                                   1_school_life_love_girl -0.662        -0.029
+12_gender_gay_transgender_sex x 13_india_family_world_love  0.601         0.028
+  5_world_god_ancient_history x 13_india_family_world_love  1.588         0.024
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_17topics
+
+17t took 0:00:28 (total so far 0:00:48)
+
+###############################################################################
+# [3/11] 19t: datasets\topics\topics_m\19t
+###############################################################################
+Merged 6550 books with 19 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.627
+  previous setup (raw shares, similarity weights): 0.627
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}, CV ROC-AUC: 0.625
+  previous setup (raw shares, no pairs, L2): 0.624
+  best LogReg converged (20 of 5000 iterations)
+
+LogReg intercept: 0.056, non-zero weights: 190 of 190
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                                                       feature   weight
+                                 12_gender_gay_transgender_sex 0.078413
+       1_school_love_girl_life x 12_gender_gay_transgender_sex 0.058958
+      12_gender_gay_transgender_sex x 15_family_el_life_mother 0.053149
+      11_team_baseball_sports_player x 17_school_life_old_year 0.047784
+          0_american_story_life_book x 1_school_love_girl_life 0.046076
+             1_school_love_girl_life x 17_school_life_old_year 0.045663
+                                    0_american_story_life_book 0.043011
+12_gender_gay_transgender_sex x 18_world_cia_time_intelligence 0.042703
+      0_american_story_life_book x 5_god_world_ancient_history 0.042376
+         16_love_life_woman_marriage x 17_school_life_old_year 0.041169
+Features pushing towards not banned:
+                                                           feature    weight
+                              7_book_children_little_illustrations -0.060708
+                                         3_magic_king_world_dragon -0.046110
+ 0_american_story_life_book x 7_book_children_little_illustrations -0.043219
+                6_ship_earth_time_planet x 8_ghost_nest_house_time -0.042422
+                                          6_ship_earth_time_planet -0.041828
+7_book_children_little_illustrations x 14_comics_graphic_new_comic -0.041276
+            5_god_world_ancient_history x 6_ship_earth_time_planet -0.038888
+                                  4_war_germany_german_world x war -0.038842
+         2_murder_killer_police_case x 16_love_life_woman_marriage -0.035193
+      3_magic_king_world_dragon x 4_war_germany_german_world x war -0.034621
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.575   0.661     0.570     0.575    0.602
+  LogReg      0.575   0.618     0.567     0.569    0.599
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.48      0.53       637
+      banned       0.57      0.66      0.62       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.57      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[308 329]
+ [228 445]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.56      0.52      0.54       637
+      banned       0.57      0.62      0.60       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.57      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[329 308]
+ [257 416]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.456, LogReg score: 0.526
+kNN 10 nearest neighbours (of the 151 used):
+                                 title  banned  similarity
+                           Double Star   False       0.983
+     Blufire (Desirable Creatures, #2)   False       0.970
+                             Federales   False       0.966
+                       Never Fall Down    True       0.957
+                          Sarah Bishop    True       0.956
+                  The Name of the Wind    True       0.953
+                          The Other Me   False       0.950
+                            Collateral    True       0.946
+The Visual Dictionary of The Civil War    True       0.944
+                 A Conspiracy of Kings   False       0.941
+LogReg largest feature contributions (intercept 0.056):
+                                                       feature  value  contribution
+2_murder_killer_police_case x 4_war_germany_german_world x war  1.865         0.069
+                              4_war_germany_german_world x war  1.344        -0.052
+ 0_american_story_life_book x 4_war_germany_german_world x war  1.439        -0.036
+   4_war_germany_german_world x war x 6_ship_earth_time_planet  1.028        -0.033
+   4_war_germany_german_world x war x 15_family_el_life_mother  3.329        -0.032
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.303, LogReg score: 0.369
+kNN 10 nearest neighbours (of the 151 used):
+                                                 title  banned  similarity
+                                     Princess Treasury   False         1.0
+                                     While Flocks Last   False         1.0
+                                            Pocahontas   False         1.0
+Dorothy Must Die: Stories (Dorothy Must Die, #0.1-0.3)    True         1.0
+                                     The Want Monsters    True         1.0
+                                            Sweet Fury   False         1.0
+                                   Shop 'Til Yule Drop   False         1.0
+                      Lola Levine Meets Jelly and Bean    True         1.0
+                      Rodeo Ron and His Milkshake Cows   False         1.0
+                           I'm Not a Pig in Underpants   False         1.0
+LogReg largest feature contributions (intercept 0.056):
+                                              feature  value  contribution
+                 7_book_children_little_illustrations  7.039        -0.427
+                             15_family_el_life_mother -0.758        -0.027
+                              17_school_life_old_year -0.831        -0.027
+16_love_life_woman_marriage x 17_school_life_old_year -0.638        -0.026
+                              1_school_love_girl_life -0.750        -0.025
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.661, LogReg score: 0.785
+kNN 10 nearest neighbours (of the 151 used):
+                                                        title  banned  similarity
+                                                   Whale Talk    True       0.991
+                                      Broken Beautiful Hearts    True       0.985
+                                      I Love You, Beth Cooper    True       0.982
+                                           The Wednesday Wars   False       0.979
+Shakespeare Makes the Playoffs (Shakespeare Bats Cleanup, #2)   False       0.973
+                                                        Boy21    True       0.959
+                                                 Rainbow High    True       0.953
+                    The Impossible Race (Cragbridge Hall, #3)   False       0.948
+                                                Arcady's Goal    True       0.948
+                                                         Sexy   False       0.941
+LogReg largest feature contributions (intercept 0.056):
+                                                 feature  value  contribution
+11_team_baseball_sports_player x 17_school_life_old_year 13.293         0.635
+1_school_love_girl_life x 11_team_baseball_sports_player 10.340         0.396
+       1_school_love_girl_life x 17_school_life_old_year  2.344         0.107
+                                 17_school_life_old_year  1.674         0.054
+                                 1_school_love_girl_life  1.359         0.045
+
+=== Golden Boy (Book ID 49) - wrongly predicted not banned ===
+True: banned, kNN score: 0.431, LogReg score: 0.480
+kNN 10 nearest neighbours (of the 151 used):
+                                                            title  banned  similarity
+                                                       The Taking    True       0.989
+                  One Condition (The Lust List: Kaidan Stone, #1)   False       0.982
+               Please Read (if at all possible): The Girl Project   False       0.981
+                                                    This Is Sadie   False       0.981
+                                    The Country of Ice Cream Star    True       0.979
+                                          The Inheritance of Loss    True       0.977
+                                    The Catalogue of the Universe   False       0.976
+                                          Defender (Sanctuary #1)   False       0.974
+It's Bigger Than Hip Hop: The Rise of the Post-Hip-Hop Generation    True       0.974
+                                                        Departure   False       0.971
+LogReg largest feature contributions (intercept 0.056):
+                                                       feature  value  contribution
+12_gender_gay_transgender_sex x 18_world_cia_time_intelligence  1.657         0.071
+     15_family_el_life_mother x 18_world_cia_time_intelligence  2.161        -0.056
+   13_india_family_world_love x 18_world_cia_time_intelligence  2.722         0.055
+      17_school_life_old_year x 18_world_cia_time_intelligence  1.918         0.038
+    3_magic_king_world_dragon x 18_world_cia_time_intelligence  1.666        -0.034
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_19topics
+
+19t took 0:00:34 (total so far 0:01:22)
+
+###############################################################################
+# [4/11] 24t: datasets\topics\topics_m\24t
+###############################################################################
+Merged 6550 books with 24 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 101, 'knn__weights': 'uniform', 'transform': 'passthrough'}, CV ROC-AUC: 0.632
+  previous setup (raw shares, similarity weights): 0.632
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.629
+  previous setup (raw shares, no pairs, L2): 0.626
+  best LogReg converged (18 of 5000 iterations)
+
+LogReg intercept: 0.056, non-zero weights: 300 of 300
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                                                  feature   weight
+                             9_gender_gay_transgender_sex 0.069664
+2_murder_police_killer_case x 20_nazi_holocaust_war_story 0.055444
+        1_school_girl_life_love x 18_school_life_old_year 0.052921
+  9_gender_gay_transgender_sex x 14_family_el_mother_life 0.047637
+                                  1_school_girl_life_love 0.045855
+                               0_american_story_life_book 0.044695
+ 18_school_life_old_year x 21_japanese_japan_goku_samurai 0.041450
+   1_school_girl_life_love x 9_gender_gay_transgender_sex 0.038350
+   2_murder_police_killer_case x 4_king_dragon_magic_help 0.037196
+ 6_mother_house_ghost_nest x 9_gender_gay_transgender_sex 0.035060
+Features pushing towards not banned:
+                                                          feature    weight
+                             5_book_children_little_illustrations -0.053231
+      9_gender_gay_transgender_sex x 17_fairy_tale_tales_princess -0.042632
+                                         7_ship_earth_planet_time -0.039302
+0_american_story_life_book x 5_book_children_little_illustrations -0.037383
+         15_war_germany_military_german x 19_world_cia_war_killed -0.036693
+           3_god_world_ancient_history x 7_ship_earth_planet_time -0.036225
+ 5_book_children_little_illustrations x 8_art_artists_artist_book -0.034848
+        9_gender_gay_transgender_sex x 23_magic_world_dark_powers -0.034792
+             7_ship_earth_planet_time x 8_art_artists_artist_book -0.034653
+                                       23_magic_world_dark_powers -0.033298
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.579   0.679     0.576     0.582    0.607
+  LogReg      0.569   0.597     0.559     0.560    0.594
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.59      0.48      0.53       637
+      banned       0.58      0.68      0.63       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[305 332]
+ [216 457]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.55      0.52      0.54       637
+      banned       0.57      0.60      0.58       673
+
+    accuracy                           0.56      1310
+   macro avg       0.56      0.56      0.56      1310
+weighted avg       0.56      0.56      0.56      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[332 305]
+ [271 402]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Boys, Bears, and a Serious Pair of Hiking Boots (Book ID 44) - correct banned ===
+True: banned, kNN score: 0.644, LogReg score: 0.555
+kNN 10 nearest neighbours (of the 101 used):
+                                                                           title  banned  similarity
+                                                                        We March    True       0.985
+                               Young Charles Darwin and the Voyage of the Beagle   False       0.985
+                                                                  More Than This    True       0.985
+                                                        Stop (Cold Mark Saga #3)   False       0.985
+                    Time Stops for No Mouse (The Hermux Tantamoq Adventures, #1)   False       0.985
+                                                            Flowers for Algernon    True       0.985
+                                                      Welcome to the Sea of Sand   False       0.985
+                                                               If I Had One Wish   False       0.985
+My Name Is Celia: The Life Of Celia Cruz / Me Llamo Celia: La Vida de Celia Cruz    True       0.985
+                      The Underground Railroad: An Interactive History Adventure   False       0.985
+LogReg largest feature contributions (intercept 0.056):
+                                                feature  value  contribution
+0_american_story_life_book x 23_magic_world_dark_powers  2.418        -0.068
+      16_love_life_woman_time x 18_school_life_old_year  1.496         0.052
+   0_american_story_life_book x 1_school_girl_life_love  1.983         0.049
+                             0_american_story_life_book  1.083         0.048
+  1_school_girl_life_love x 3_god_world_ancient_history  1.756        -0.048
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.327, LogReg score: 0.275
+kNN 10 nearest neighbours (of the 101 used):
+                                                                                   title  banned  similarity
+                                                                       Princess Treasury   False       0.988
+                                                                      The Surface Breaks   False       0.980
+                                                                  The Seven Lady Godivas   False       0.953
+                                                                     The Gingerbread Man   False       0.934
+                                                  Winter Falls: A Tale of the Snow Queen   False       0.934
+                                        The Cat Who Came for Christmas (Compleat Cat #1)   False       0.929
+                             The Poets' Grimm: 20th Century Poems from Grimm Fairy Tales   False       0.927
+                                               The Daring Adventures of Penhaligon Brush   False       0.922
+                                                                        Revolting Rhymes    True       0.919
+Beauty and the Beast: Classic Tales About Animal Brides and Grooms from Around the World   False       0.916
+LogReg largest feature contributions (intercept 0.056):
+                                                            feature  value  contribution
+5_book_children_little_illustrations x 17_fairy_tale_tales_princess 11.347        -0.258
+                                       17_fairy_tale_tales_princess  4.418        -0.146
+                               5_book_children_little_illustrations  2.099        -0.112
+         3_god_world_ancient_history x 17_fairy_tale_tales_princess  7.649        -0.111
+ 3_god_world_ancient_history x 5_book_children_little_illustrations  3.582        -0.098
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.604, LogReg score: 0.719
+kNN 10 nearest neighbours (of the 101 used):
+                                                title  banned  similarity
+                                           Whale Talk    True       0.978
+                                         Rainbow High    True       0.952
+                              Broken Beautiful Hearts    True       0.943
+                                            High Heat    True       0.939
+                                              Swagger    True       0.931
+Mermaid Treasure Hunt (Dora and Friends) (Pictureback   False       0.928
+                                      Perpetual Check    True       0.927
+                                       Crossing Lines    True       0.920
+                                        Arcady's Goal    True       0.918
+                                      Black and White    True       0.912
+LogReg largest feature contributions (intercept 0.056):
+                                                        feature  value  contribution
+11_team_baseball_sports_player x 21_japanese_japan_goku_samurai  8.087         0.183
+       11_team_baseball_sports_player x 18_school_life_old_year  5.567         0.150
+       18_school_life_old_year x 21_japanese_japan_goku_samurai  3.325         0.138
+       1_school_girl_life_love x 11_team_baseball_sports_player  6.075         0.131
+       19_world_cia_war_killed x 21_japanese_japan_goku_samurai  4.617         0.109
+
+=== Everybody Sees the Ants (Book ID 21) - wrongly predicted not banned ===
+True: banned, kNN score: 0.396, LogReg score: 0.476
+kNN 10 nearest neighbours (of the 101 used):
+                                 title  banned  similarity
+The Visual Dictionary of The Civil War    True       0.979
+                             Federales   False       0.961
+                          Sarah Bishop    True       0.954
+                           Double Star   False       0.947
+     Blufire (Desirable Creatures, #2)   False       0.942
+      State of Alliance (Collapse, #5)   False       0.940
+                    The Whiskey Rebels   False       0.935
+                       Never Fall Down    True       0.935
+                            Collateral    True       0.929
+     She-Hulk, Volume 1: Deconstructed   False       0.925
+LogReg largest feature contributions (intercept 0.056):
+                                                    feature  value  contribution
+   15_war_germany_military_german x 18_school_life_old_year  4.583        -0.093
+15_war_germany_military_german x 23_magic_world_dark_powers  3.967        -0.071
+                             15_war_germany_military_german  2.589        -0.066
+   15_war_germany_military_german x 19_world_cia_war_killed  1.496        -0.055
+13_india_family_young_love x 15_war_germany_military_german  4.217        -0.051
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_24topics
+
+24t took 0:01:01 (total so far 0:02:24)
+
+###############################################################################
+# [5/11] 28t: datasets\topics\topics_m\28t
+###############################################################################
+Merged 6550 books with 28 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.636
+  previous setup (raw shares, similarity weights): 0.636
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.638
+  previous setup (raw shares, no pairs, L2): 0.630
+  best LogReg converged (20 of 5000 iterations)
+
+LogReg intercept: 0.057, non-zero weights: 406 of 406
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                                                      feature   weight
+                                 8_gender_gay_transgender_sex 0.069797
+    1_murder_killer_police_case x 17_war_nazi_holocaust_world 0.050125
+                             2_black_american_history_african 0.047306
+       0_school_girl_love_life x 8_gender_gay_transgender_sex 0.045319
+       1_murder_killer_police_case x 4_king_dragon_magic_help 0.043934
+9_vampire_vampires_dresden_lestat x 23_sea_captain_ship_ocean 0.042357
+            0_school_girl_love_life x 18_school_old_life_year 0.039843
+   0_school_girl_love_life x 2_black_american_history_african 0.038312
+8_gender_gay_transgender_sex x 11_war_german_germany_military 0.036543
+                                      0_school_girl_love_life 0.036335
+Features pushing towards not banned:
+                                                            feature    weight
+                               5_book_children_little_illustrations -0.052213
+   5_book_children_little_illustrations x 23_sea_captain_ship_ocean -0.047903
+          6_art_artists_artist_book x 26_drug_life_disorder_illness -0.043517
+         11_war_german_germany_military x 23_sea_captain_ship_ocean -0.042511
+   5_book_children_little_illustrations x 6_art_artists_artist_book -0.039161
+                                         19_earth_planet_space_ship -0.037685
+                                           4_king_dragon_magic_help -0.035246
+5_book_children_little_illustrations x 20_novel_american_life_story -0.035004
+           1_murder_killer_police_case x 27_magic_dark_mother_world -0.034617
+         4_king_dragon_magic_help x 25_japanese_japan_samurai_tokyo -0.033918
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.582   0.649     0.577     0.580    0.605
+  LogReg      0.575   0.602     0.566     0.567    0.597
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.58      0.51      0.54       637
+      banned       0.58      0.65      0.61       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[323 314]
+ [236 437]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.56      0.53      0.54       637
+      banned       0.58      0.60      0.59       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.57      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[338 299]
+ [268 405]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.424, LogReg score: 0.529
+kNN 10 nearest neighbours (of the 151 used):
+                                                    title  banned  similarity
+                                                Federales   False       0.936
+                         State of Alliance (Collapse, #5)   False       0.934
+                                          Never Fall Down    True       0.933
+                   The Visual Dictionary of The Civil War    True       0.932
+                                             Sarah Bishop    True       0.929
+                                               Collateral    True       0.925
+                                              Double Star   False       0.923
+                                       The Imitation Game    True       0.905
+                        Blufire (Desirable Creatures, #2)   False       0.897
+My Last Skirt: The Story of Jennie Hodgers, Union Soldier    True       0.895
+LogReg largest feature contributions (intercept 0.057):
+                                                    feature  value  contribution
+  11_war_german_germany_military x 15_family_el_mother_life  4.835        -0.083
+   11_war_german_germany_military x 18_school_old_life_year  5.267        -0.076
+11_war_german_germany_military x 27_magic_dark_mother_world  3.790        -0.073
+   11_war_german_germany_military x 14_love_life_woman_time  5.910         0.068
+                             11_war_german_germany_military  2.772        -0.061
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.344, LogReg score: 0.315
+kNN 10 nearest neighbours (of the 151 used):
+                                           title  banned  similarity
+                               Princess Treasury   False       1.000
+                          The Seven Lady Godivas   False       0.965
+                    Not Norman: A Goldfish Story    True       0.963
+The Cat Who Came for Christmas (Compleat Cat #1)   False       0.944
+          Winter Falls: A Tale of the Snow Queen   False       0.915
+                                    Pinkalicious    True       0.913
+                                Revolting Rhymes    True       0.913
+               The Annotated Classic Fairy Tales   False       0.911
+                                   Amazing Grace    True       0.909
+                                 Clockwork Angel    True       0.909
+LogReg largest feature contributions (intercept 0.057):
+                                                            feature  value  contribution
+5_book_children_little_illustrations x 16_fairy_tale_tales_princess 14.453        -0.351
+                               5_book_children_little_illustrations  2.383        -0.124
+                                       16_fairy_tale_tales_princess  4.711        -0.113
+                                            0_school_girl_love_life -1.060        -0.039
+                                   2_black_american_history_african -0.785        -0.037
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.626, LogReg score: 0.738
+kNN 10 nearest neighbours (of the 151 used):
+                                                title  banned  similarity
+                                           Whale Talk    True       0.945
+                              Broken Beautiful Hearts    True       0.927
+                                         Rainbow High    True       0.926
+                                       Crossing Lines    True       0.911
+            The Impossible Race (Cragbridge Hall, #3)   False       0.909
+                                    Playing the Field    True       0.903
+                                              Swagger    True       0.903
+Mermaid Treasure Hunt (Dora and Friends) (Pictureback   False       0.900
+                                      Perpetual Check    True       0.900
+                                            High Heat    True       0.899
+LogReg largest feature contributions (intercept 0.057):
+                                                 feature  value  contribution
+10_team_baseball_sports_player x 22_goku_manga_world_kun  9.882         0.197
+10_team_baseball_sports_player x 18_school_old_life_year  5.969         0.148
+0_school_girl_love_life x 21_cia_world_time_intelligence  6.676         0.122
+18_school_old_life_year x 21_cia_world_time_intelligence  5.572         0.108
+21_cia_world_time_intelligence x 22_goku_manga_world_kun  6.379         0.102
+
+=== Noragami: Stray God, Vol. 14 (Noragami: Stray God, #14) (Book ID 50) - wrongly predicted not banned ===
+True: banned, kNN score: 0.567, LogReg score: 0.454
+kNN 10 nearest neighbours (of the 151 used):
+                                     title  banned  similarity
+                    The New American Bible    True       0.953
+           Ties That Bind, Ties That Break    True       0.939
+                       Reading in the Dark   False       0.924
+                             The Moviegoer    True       0.900
+                           The Great Alone    True       0.899
+The Dark Descent of Elizabeth Frankenstein    True       0.899
+                        Here Lies the Body   False       0.899
+                                   Lottery   False       0.899
+                  Dirty girl called girtie   False       0.899
+                                    Rumble    True       0.888
+LogReg largest feature contributions (intercept 0.057):
+                                                           feature  value  contribution
+     3_god_world_ancient_history x 25_japanese_japan_samurai_tokyo  6.779         0.103
+   5_book_children_little_illustrations x 15_family_el_mother_life  3.205        -0.091
+            3_god_world_ancient_history x 15_family_el_mother_life  4.124        -0.090
+3_god_world_ancient_history x 5_book_children_little_illustrations  3.390        -0.071
+        15_family_el_mother_life x 25_japanese_japan_samurai_tokyo  4.655         0.067
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_28topics
+
+28t took 0:01:35 (total so far 0:03:59)
+
+###############################################################################
+# [6/11] 45t: datasets\topics\topics_m\45t
+###############################################################################
+Merged 6550 books with 45 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 201, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.635
+  previous setup (raw shares, similarity weights): 0.635
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.637
+  previous setup (raw shares, no pairs, L2): 0.633
+  best LogReg converged (18 of 5000 iterations)
+
+LogReg intercept: 0.055, non-zero weights: 45 of 45
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                                feature   weight
+         17_gender_gay_transgender_lgbt 0.116568
+                0_love_school_life_girl 0.085274
+                 14_school_boy_life_old 0.083752
+36_school_captain_middle x school_grade 0.065767
+             42_play_romeo_theatre_love 0.060970
+       20_black_american_african_rights 0.055614
+             40_mother_family_home_life 0.046728
+    33_students_education_teachers_race 0.045741
+            15_india_family_love_muslim 0.043169
+               22_goku_kun_manga_nitori 0.041160
+Features pushing towards not banned:
+                         feature    weight
+      18_earth_planet_space_ship -0.072930
+    30_nice_london_love_penelope -0.066885
+2_book_christmas_children_little -0.066381
+   9_war_germany_german_military -0.053836
+      29_magic_world_dark_mother -0.052932
+   37_time_world_science_history -0.043043
+      25_sea_captain_ship_voyage -0.041148
+     3_king_dragon_magic_dragons -0.040528
+   23_cia_world_terrorist_killed -0.033963
+ 16_gods_myths_ancient_mythology -0.032250
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.587   0.698     0.586     0.592    0.625
+  LogReg      0.586   0.657     0.582     0.585    0.628
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.60      0.48      0.53       637
+      banned       0.59      0.70      0.64       673
+
+    accuracy                           0.59      1310
+   macro avg       0.59      0.59      0.59      1310
+weighted avg       0.59      0.59      0.59      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[306 331]
+ [203 470]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.58      0.51      0.54       637
+      banned       0.59      0.66      0.62       673
+
+    accuracy                           0.59      1310
+   macro avg       0.59      0.58      0.58      1310
+weighted avg       0.59      0.59      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[325 312]
+ [231 442]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Boys, Bears, and a Serious Pair of Hiking Boots (Book ID 44) - correct banned ===
+True: banned, kNN score: 0.638, LogReg score: 0.602
+kNN 10 nearest neighbours (of the 201 used):
+                                                       title  banned  similarity
+                               The Unlikely Hero of Room 13B    True       0.929
+                                                     Shadows   False       0.923
+                                           Fancy White Trash    True       0.917
+                                                     Silence    True       0.898
+                                         Extraordinary Means    True       0.896
+                            Tell Me If the Lovers Are Losers    True       0.895
+                Baby Did A Bad Bad Thing (Gemma Lincoln, #2)   False       0.895
+                                               Madame Bovary    True       0.895
+                                              More Than This    True       0.895
+Time Stops for No Mouse (The Hermux Tantamoq Adventures, #1)   False       0.895
+LogReg largest feature contributions (intercept 0.055):
+                          feature  value  contribution
+       42_play_romeo_theatre_love  2.738         0.167
+     30_nice_london_love_penelope  1.341        -0.090
+           14_school_boy_life_old  0.854         0.071
+          0_love_school_life_girl  0.782         0.067
+31_disorder_drug_psychiatric_quit  2.140         0.048
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.362, LogReg score: 0.366
+kNN 10 nearest neighbours (of the 201 used):
+                                           title  banned  similarity
+The Cat Who Came for Christmas (Compleat Cat #1)   False       0.945
+                              Lola Loves Stories    True       0.941
+                                    Pinkalicious    True       0.926
+                                Revolting Rhymes    True       0.899
+               The Annotated Classic Fairy Tales   False       0.898
+                                       Infandous    True       0.889
+                    Not Norman: A Goldfish Story    True       0.888
+                               The Mousehole Cat   False       0.888
+                                        Blankets    True       0.888
+                      Gilbert and the Lost Tooth   False       0.888
+LogReg largest feature contributions (intercept 0.055):
+                            feature  value  contribution
+   2_book_christmas_children_little  2.557        -0.170
+13_fairy_tale_princess_fairy x tale  5.677        -0.167
+            0_love_school_life_girl -1.049        -0.089
+             14_school_boy_life_old -1.048        -0.088
+       30_nice_london_love_penelope -0.686         0.046
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.670, LogReg score: 0.633
+kNN 10 nearest neighbours (of the 201 used):
+                          title  banned  similarity
+                     Whale Talk    True       0.890
+There's a Girl in My Hammerlock    True       0.885
+        Broken Beautiful Hearts    True       0.847
+                Stealing Parker    True       0.833
+                           Sexy   False       0.827
+              Chinese Handcuffs    True       0.809
+                   Rainbow High    True       0.807
+             Girls on the Verge    True       0.807
+                        Girl #3   False       0.803
+           Sophomore Undercover    True       0.797
+LogReg largest feature contributions (intercept 0.055):
+                                feature  value  contribution
+36_school_captain_middle x school_grade  1.861         0.122
+    33_students_education_teachers_race  2.600         0.119
+               22_goku_kun_manga_nitori  2.448         0.101
+                0_love_school_life_girl  1.164         0.099
+                 14_school_boy_life_old  1.142         0.096
+
+=== Everybody Sees the Ants (Book ID 21) - wrongly predicted not banned ===
+True: banned, kNN score: 0.389, LogReg score: 0.492
+kNN 10 nearest neighbours (of the 201 used):
+                                 title  banned  similarity
+                          Sarah Bishop    True       0.956
+                       Never Fall Down    True       0.938
+                            Collateral    True       0.927
+                             Federales   False       0.923
+     Blufire (Desirable Creatures, #2)   False       0.891
+                       The Nightingale    True       0.890
+                           Double Star   False       0.883
+The Visual Dictionary of The Civil War    True       0.872
+                    Hearts in Atlantis    True       0.867
+                         Devil's Brood   False       0.866
+LogReg largest feature contributions (intercept 0.055):
+                         feature  value  contribution
+   9_war_germany_german_military  3.381        -0.182
+    30_nice_london_love_penelope  1.077        -0.072
+          14_school_boy_life_old  0.835         0.070
+2_book_christmas_children_little -0.770         0.051
+      40_mother_family_home_life  1.055         0.049
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_45topics
+
+45t took 0:00:13 (total so far 0:04:12)
+
+###############################################################################
+# [7/11] 72t: datasets\topics\topics_m\72t
+###############################################################################
+Merged 6550 books with 72 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 75, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.647
+  previous setup (raw shares, similarity weights): 0.647
+LogReg best params: {'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.650
+  previous setup (raw shares, no pairs, L2): 0.647
+  best LogReg converged (18 of 5000 iterations)
+
+LogReg intercept: 0.058, non-zero weights: 72 of 72
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                            feature   weight
+     10_gender_gay_transgender_lgbt 0.179731
+        19_gay_school_straight_girl 0.145296
+  40_school_high_high x school_girl 0.126419
+37_education_students_teachers_race 0.121580
+         8_love_marriage_life_woman 0.104580
+   18_black_american_african_rights 0.099911
+           13_school_boy_novel_year 0.087955
+    16_art_artists_artist_paintings 0.087951
+       71_musical_theater_play_love 0.080071
+        51_mother_family_old_father 0.073450
+Features pushing towards not banned:
+                              feature    weight
+         30_nice_london_penelope_anne -0.133555
+           11_planet_earth_ship_space -0.098876
+        52_fantasy_world_magic_wizard -0.089215
+2_book_children_illustrations_animals -0.086508
+        5_war_german_germany_military -0.083125
+     58_buffy_willow_sunnydale_slayer -0.078996
+            25_sea_ship_captain_ocean -0.074480
+43_time_science_time x travel_history -0.064638
+             3_ghost_ss_ghosts_horror -0.064422
+          24_magic_dark_magical_world -0.058021
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.601   0.682     0.600     0.604    0.627
+  LogReg      0.585   0.618     0.577     0.579    0.621
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.61      0.52      0.56       637
+      banned       0.60      0.68      0.64       673
+
+    accuracy                           0.60      1310
+   macro avg       0.60      0.60      0.60      1310
+weighted avg       0.60      0.60      0.60      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[332 305]
+ [214 459]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.54      0.55       637
+      banned       0.59      0.62      0.60       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[342 295]
+ [257 416]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Boys, Bears, and a Serious Pair of Hiking Boots (Book ID 44) - correct banned ===
+True: banned, kNN score: 0.596, LogReg score: 0.669
+kNN 10 nearest neighbours (of the 75 used):
+                                                       title  banned  similarity
+                                                     Shadows   False       0.905
+                 Ms. Marvel, #15: Damage Per Second, Part II   False       0.888
+                                              More Than This    True       0.865
+Time Stops for No Mouse (The Hermux Tantamoq Adventures, #1)   False       0.859
+                                               Madame Bovary    True       0.859
+                            Tell Me If the Lovers Are Losers    True       0.859
+                                                      Twitch   False       0.853
+                      Break the Surface (Watching Alice, #1)   False       0.845
+                           Typhoid Mary: An Urban Historical   False       0.843
+                               Marilyn Monroe: The Biography    True       0.842
+LogReg largest feature contributions (intercept 0.058):
+                     feature  value  contribution
+49_play_theatre_hamlet_plays  3.485         0.188
+71_musical_theater_play_love  2.235         0.179
+  8_love_marriage_life_woman  1.360         0.142
+    70_polly_love_novel_life  1.692         0.119
+    13_school_boy_novel_year  1.256         0.110
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.333, LogReg score: 0.275
+kNN 10 nearest neighbours (of the 75 used):
+                                                             title  banned  similarity
+                                               The Gingerbread Man   False       0.787
+    Young Wolf and Spirit Horse (Step into Reading, Step 3, paper)   False       0.764
+                                      Not Norman: A Goldfish Story    True       0.737
+                    Spice & Wolf, Vol. 4 (Spice & Wolf: Manga, #4)   False       0.720
+Poe: Stories and Poems: A Graphic Novel Adaptation by Gareth Hinds   False       0.711
+                                                 Princess Treasury   False       0.707
+                                                      Pinkalicious    True       0.698
+                        Will You Always Love Me? and Other Stories    True       0.697
+                                        Tales from the Land of Ooo   False       0.697
+                                                       Digital Art    True       0.694
+LogReg largest feature contributions (intercept 0.058):
+                              feature  value  contribution
+2_book_children_illustrations_animals  3.261        -0.282
+   7_fairy_tale_fairy x tale_princess  4.338        -0.199
+          19_gay_school_straight_girl -0.596        -0.087
+    40_school_high_high x school_girl -0.670        -0.085
+             13_school_boy_novel_year -0.924        -0.081
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.787, LogReg score: 0.795
+kNN 10 nearest neighbours (of the 75 used):
+                                                                      title  banned  similarity
+                                                                 Whale Talk    True       0.919
+                                                       Sophomore Undercover    True       0.912
+                                                                   Stargirl    True       0.902
+With Their Eyes: September 11th: The View from a High School at Ground Zero    True       0.880
+                                                                      Boy21    True       0.880
+                                                                And We Stay    True       0.880
+                                                                   Solstice    True       0.877
+                                          Touch (The Queen of the Dead, #2)   False       0.876
+                                                   The Knife That Killed Me   False       0.876
+                                 Food, Girls, and Other Things I Can't Have    True       0.871
+LogReg largest feature contributions (intercept 0.058):
+                            feature  value  contribution
+        19_gay_school_straight_girl  2.376         0.345
+  40_school_high_high x school_girl  2.712         0.343
+37_education_students_teachers_race  2.662         0.324
+       71_musical_theater_play_love  1.971         0.158
+     22_goku_martial_manga_japanese  2.328         0.148
+
+=== Everybody Sees the Ants (Book ID 21) - wrongly predicted not banned ===
+True: banned, kNN score: 0.380, LogReg score: 0.476
+kNN 10 nearest neighbours (of the 75 used):
+                            title  banned  similarity
+                  Never Fall Down    True       0.918
+                       Collateral    True       0.888
+                     Sarah Bishop    True       0.882
+               Hearts in Atlantis    True       0.873
+                      Double Star   False       0.852
+Blufire (Desirable Creatures, #2)   False       0.838
+        Nemo: The Roses of Berlin   False       0.830
+                A Time for Angels   False       0.828
+                        Federales   False       0.814
+                 The Yellow Birds    True       0.813
+LogReg largest feature contributions (intercept 0.058):
+                          feature  value  contribution
+    5_war_german_germany_military  3.630        -0.302
+       8_love_marriage_life_woman  1.146         0.120
+         13_school_boy_novel_year  1.296         0.114
+      19_gay_school_straight_girl -0.596        -0.087
+40_school_high_high x school_girl -0.670        -0.085
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_72topics
+
+72t took 0:00:15 (total so far 0:04:27)
+
+###############################################################################
+# [8/11] 88t: datasets\topics\topics_m\88t
+###############################################################################
+Merged 6550 books with 88 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 75, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.645
+  previous setup (raw shares, similarity weights): 0.645
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.650
+  previous setup (raw shares, no pairs, L2): 0.648
+  best LogReg converged (18 of 5000 iterations)
+
+LogReg intercept: 0.056, non-zero weights: 88 of 88
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                           feature   weight
+     9_gender_gay_transgender_lgbt 0.112041
+       11_gay_school_straight_high 0.080627
+32_school_girls_high_high x school 0.063582
+ 39_education_students_racial_race 0.063555
+     21_black_african_rights_civil 0.058038
+          16_school_novel_year_old 0.053545
+      8_slave_slavery_slaves_south 0.052801
+   14_art_artists_artist_paintings 0.049592
+        6_love_marriage_woman_life 0.049562
+           61_love_novel_life_just 0.044392
+Features pushing towards not banned:
+                               feature    weight
+             7_earth_planet_space_ship -0.064144
+          30_nice_london_penelope_anne -0.060876
+         53_fantasy_magic_wizard_world -0.059516
+13_book_children_illustrations_animals -0.054855
+      19_magic_magical_dark_mysterious -0.048819
+             25_captain_ship_sea_ocean -0.047259
+      71_buffy_willow_sunnydale_slayer -0.046729
+ 58_fairy_prince_fairy x tale_princess -0.042750
+       55_science_time_empire_kingdoms -0.041154
+         63_war_germany_german_british -0.036674
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.592   0.673     0.590     0.594    0.614
+  LogReg      0.589   0.627     0.582     0.584    0.629
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.60      0.51      0.55       637
+      banned       0.59      0.67      0.63       673
+
+    accuracy                           0.59      1310
+   macro avg       0.59      0.59      0.59      1310
+weighted avg       0.59      0.59      0.59      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[325 312]
+ [220 453]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.58      0.54      0.56       637
+      banned       0.59      0.63      0.61       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[343 294]
+ [251 422]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.451, LogReg score: 0.501
+kNN 10 nearest neighbours (of the 75 used):
+                                               title  banned  similarity
+                                     Never Fall Down    True       0.906
+                                  Hearts in Atlantis    True       0.874
+                                          Collateral    True       0.850
+                            A Million Shades of Gray    True       0.836
+                   Blufire (Desirable Creatures, #2)   False       0.833
+                                A Hand Full of Stars   False       0.825
+                                    The Short-Timers   False       0.824
+10,000 Days of Thunder: A History of the Vietnam War    True       0.823
+                                    The Yellow Birds    True       0.821
+                                         Double Star   False       0.819
+LogReg largest feature contributions (intercept 0.056):
+                         feature  value  contribution
+     68_military_war_sniper_dogs  2.223        -0.078
+        16_school_novel_year_old  1.335         0.071
+      6_love_marriage_woman_life  1.146         0.057
+         61_love_novel_life_just  1.192         0.053
+18_war_vietnam_soldiers_military  4.470        -0.050
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.392, LogReg score: 0.350
+kNN 10 nearest neighbours (of the 75 used):
+                                                                   title  banned  similarity
+                                             Charles Dickens and Friends   False       0.832
+                                    Pirates in Hell (Heroes in Hell #20)   False       0.828
+                                                       Princess Treasury   False       0.810
+                                                     The Gingerbread Man   False       0.800
+              The Darwin Awards: Evolution in Action (Darwin Awards, #1)   False       0.797
+The Norton Anthology of Children's Literature: The Traditions in English   False       0.783
+                                       Beastly Tales from Here and There   False       0.779
+                                                 Bites & Bones Flip Book    True       0.779
+                                                    The Canterbury Tales   False       0.771
+                        Lewis Carroll's Alice's Adventures in Wonderland   False       0.766
+LogReg largest feature contributions (intercept 0.056):
+                               feature  value  contribution
+13_book_children_illustrations_animals  2.926        -0.161
+       76_graphic_creating_manga_cards  4.332        -0.095
+       46_fairy_tales_tale_illustrated  5.968        -0.050
+              16_school_novel_year_old -0.910        -0.049
+           11_gay_school_straight_high -0.558        -0.045
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.776, LogReg score: 0.717
+kNN 10 nearest neighbours (of the 75 used):
+                                     title  banned  similarity
+                      Sophomore Undercover    True       0.916
+                                  Period 8    True       0.906
+                                  Stargirl    True       0.905
+                                How I Grew    True       0.887
+                                 Fat Angie    True       0.873
+                                    Kendra    True       0.871
+                  The Knife That Killed Me   False       0.864
+Food, Girls, and Other Things I Can't Have    True       0.859
+                                     Boy21    True       0.859
+                           Hangman's Curse   False       0.858
+LogReg largest feature contributions (intercept 0.056):
+                           feature  value  contribution
+       11_gay_school_straight_high  2.674         0.216
+32_school_girls_high_high x school  2.605         0.166
+ 39_education_students_racial_race  2.497         0.159
+             80_nitori_kun_san_boy  2.334         0.103
+          16_school_novel_year_old  1.307         0.070
+
+=== They Both Die at the End (Book ID 65) - wrongly predicted not banned ===
+True: banned, kNN score: 0.553, LogReg score: 0.435
+kNN 10 nearest neighbours (of the 75 used):
+                                                             title  banned  similarity
+                                    The Girl Who Loved Wild Horses   False       0.820
+                                             Dreamer (Traveler #2)   False       0.769
+                                               Something Like Fate    True       0.761
+                   More Confessions of a Hostie: The Second Sector   False       0.743
+                                                  Someone Like You    True       0.726
+                                                   Now and Forever    True       0.692
+                                                            Peanut   False       0.689
+                                                         Handcuffs    True       0.678
+The Warlock of Firetop Mountain (Fighting Fantasy: Reissues 1, #1)   False       0.675
+                                             The End of Everything    True       0.673
+LogReg largest feature contributions (intercept 0.056):
+                          feature  value  contribution
+    53_fantasy_magic_wizard_world  3.870        -0.230
+4_love_best_friends_best x friend  2.254         0.069
+      67_year_life_year x old_old  2.426         0.068
+         16_school_novel_year_old -0.910        -0.049
+      11_gay_school_straight_high -0.558        -0.045
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_88topics
+
+88t took 0:00:16 (total so far 0:04:43)
+
+###############################################################################
+# [9/11] 104t: datasets\topics\topics_m\104t
+###############################################################################
+Merged 6550 books with 104 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 201, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.651
+  previous setup (raw shares, similarity weights): 0.649
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.654
+  previous setup (raw shares, no pairs, L2): 0.650
+  best LogReg converged (18 of 5000 iterations)
+
+LogReg intercept: 0.056, non-zero weights: 104 of 104
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                              feature   weight
+        9_gender_gay_transgender_lgbt 0.108407
+          7_gay_school_straight_girls 0.072392
+38_education_students_teachers_racial 0.066492
+        20_black_civil_rights_african 0.056707
+          28_school_girls_callie_girl 0.051282
+      11_art_artists_artist_paintings 0.048236
+              84_love_novel_life_girl 0.042634
+             14_novel_school_year_old 0.042402
+        19_el_patron_dominican_mexico 0.042101
+           3_love_marriage_woman_life 0.041693
+Features pushing towards not banned:
+                              feature    weight
+         26_nice_london_penelope_anne -0.065405
+            5_planet_earth_space_ship -0.065277
+          79_satan_hell_magician_soul -0.056143
+          15_magic_dark_magical_spell -0.055718
+           43_fairy_tales_disney_tale -0.051735
+      67_time_empire_science_kingdoms -0.050352
+12_children_book_illustrations_little -0.049987
+     70_buffy_willow_sunnydale_slayer -0.046346
+        56_war_germany_german_british -0.045550
+           23_captain_sea_ship_voyage -0.040247
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.585   0.709     0.584     0.592    0.635
+  LogReg      0.592   0.606     0.583     0.583    0.636
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.60      0.47      0.53       637
+      banned       0.58      0.71      0.64       673
+
+    accuracy                           0.59      1310
+   macro avg       0.59      0.59      0.58      1310
+weighted avg       0.59      0.59      0.59      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[298 339]
+ [196 477]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.56      0.57       637
+      banned       0.59      0.61      0.60       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[356 281]
+ [265 408]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.521, LogReg score: 0.505
+kNN 10 nearest neighbours (of the 201 used):
+                                           title  banned  similarity
+                                 The Nightingale    True       0.823
+                              They Called Me Red    True       0.819
+                                    Sarah Bishop    True       0.812
+                                     Double Star   False       0.796
+               Blufire (Desirable Creatures, #2)   False       0.771
+                                      Collateral    True       0.764
+                       What I Saw and How I Lied    True       0.757
+The Never Hero (Chronicles Of Jonathan Tibbs #1)   False       0.757
+                                The Yellow Birds    True       0.743
+               She-Hulk, Volume 1: Deconstructed   False       0.741
+LogReg largest feature contributions (intercept 0.056):
+                      feature  value  contribution
+56_war_germany_german_british  1.688        -0.077
+     14_novel_school_year_old  1.627         0.069
+      84_love_novel_life_girl  1.417         0.060
+   3_love_marriage_woman_life  1.221         0.051
+ 62_war_military_byron_german  2.045        -0.047
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.402, LogReg score: 0.385
+kNN 10 nearest neighbours (of the 201 used):
+                                                         title  banned  similarity
+                                             A Midwife's Story   False       0.721
+Young Wolf and Spirit Horse (Step into Reading, Step 3, paper)   False       0.706
+                                             Princess Treasury   False       0.698
+                    Will You Always Love Me? and Other Stories    True       0.681
+                                           The Gingerbread Man   False       0.663
+                                       Who Was Maurice Sendak?    True       0.663
+                                   Charles Dickens and Friends   False       0.657
+                                           The Bane Chronicles    True       0.641
+                                          The Canterbury Tales   False       0.632
+                                                     Lily Wool   False       0.632
+LogReg largest feature contributions (intercept 0.056):
+                              feature  value  contribution
+           43_fairy_tales_disney_tale  5.490        -0.284
+12_children_book_illustrations_little  2.860        -0.143
+  47_american_novel_classic_hollywood  1.948         0.069
+       86_goodnight_sleep_babies_baby  2.590         0.053
+          7_gay_school_straight_girls -0.526        -0.038
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.729, LogReg score: 0.688
+kNN 10 nearest neighbours (of the 201 used):
+                   title  banned  similarity
+                Period 8    True       0.883
+    Sophomore Undercover    True       0.877
+              How I Grew    True       0.859
+                The Wave   False       0.842
+    The Art of Hana-Kimi    True       0.836
+The Problem with Forever   False       0.833
+  Never Always Sometimes    True       0.825
+              Whale Talk    True       0.822
+What They Always Tell Us    True       0.820
+    Spanking Shakespeare    True       0.815
+LogReg largest feature contributions (intercept 0.056):
+                              feature  value  contribution
+          7_gay_school_straight_girls  2.339         0.169
+38_education_students_teachers_racial  2.401         0.160
+          28_school_girls_callie_girl  2.079         0.107
+     94_school_teacher_class_district  2.859         0.103
+  99_school_high_high x school_secret  3.271         0.081
+
+=== They Both Die at the End (Book ID 65) - wrongly predicted not banned ===
+True: banned, kNN score: 0.580, LogReg score: 0.460
+kNN 10 nearest neighbours (of the 201 used):
+                                                                                       title  banned  similarity
+                                                Last Groom Standing (The Wedding Season, #4)   False       0.826
+                                                        Anatomy of a Boyfriend (Anatomy, #1)   False       0.733
+Sam, the Most Scaredy-cat Kid in the Whole World: A Leonardo, the Terrible Monster Companion   False       0.681
+                                                              The Girl Who Loved Wild Horses   False       0.667
+                                                                          Girls from Da Hood    True       0.665
+                                             More Confessions of a Hostie: The Second Sector   False       0.655
+                      Suitcase of Stars (Enchanted Emporium, #1; La Bottega Battibaleno, #1)   False       0.614
+                                                                                   Handcuffs    True       0.606
+                                                                             Ladder of Years    True       0.594
+                                                                               Eleven on Top    True       0.586
+LogReg largest feature contributions (intercept 0.056):
+                          feature  value  contribution
+    57_magic_wizard_world_fantasy  4.930        -0.198
+2_love_best_friends_best x friend  3.371         0.124
+    71_year_year x old_old_summer  3.931         0.084
+      7_gay_school_straight_girls -0.526        -0.038
+         14_novel_school_year_old -0.821        -0.035
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_104topics
+
+104t took 0:00:16 (total so far 0:04:58)
+
+###############################################################################
+# [10/11] 126t: datasets\topics\topics_m\126t
+###############################################################################
+Merged 6550 books with 126 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.653
+  previous setup (raw shares, similarity weights): 0.653
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.659
+  previous setup (raw shares, no pairs, L2): 0.656
+  best LogReg converged (17 of 5000 iterations)
+
+LogReg intercept: 0.057, non-zero weights: 126 of 126
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                              feature   weight
+        8_gender_gay_transgender_lgbt 0.108141
+          4_gay_school_straight_girls 0.070577
+39_education_students_teachers_racial 0.068618
+           0_love_marriage_life_woman 0.058932
+          15_el_patron_mexican_mexico 0.056510
+                10_novel_boy_year_old 0.055683
+      16_black_rights_americans_civil 0.055219
+       19_killers_serial_murder_trial 0.050360
+      18_art_artists_artist_paintings 0.045293
+114_summer_sophie_high x school_julia 0.040823
+Features pushing towards not banned:
+                               feature    weight
+    83_dwarves_london_detective_murder -0.072484
+             3_planet_earth_space_ship -0.061306
+31_animals_children_book_illustrations -0.056125
+          20_magic_dark_magical_powers -0.052337
+       65_science_time_empire_kingdoms -0.051390
+           82_satan_magician_hell_soul -0.048311
+         67_war_germany_german_british -0.045279
+            22_captain_sea_ship_voyage -0.044495
+      75_buffy_willow_sunnydale_slayer -0.043662
+    40_fairy_prince_fairy x tale_queen -0.039726
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.600   0.670     0.598     0.601    0.636
+  LogReg      0.586   0.597     0.576     0.576    0.627
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.60      0.53      0.56       637
+      banned       0.60      0.67      0.63       673
+
+    accuracy                           0.60      1310
+   macro avg       0.60      0.60      0.60      1310
+weighted avg       0.60      0.60      0.60      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[336 301]
+ [222 451]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.55      0.56       637
+      banned       0.59      0.60      0.59       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[353 284]
+ [271 402]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Boys, Bears, and a Serious Pair of Hiking Boots (Book ID 44) - correct banned ===
+True: banned, kNN score: 0.621, LogReg score: 0.574
+kNN 10 nearest neighbours (of the 151 used):
+                                                       title  banned  similarity
+                                                     Shadows   False       0.797
+                 Ms. Marvel, #15: Damage Per Second, Part II   False       0.785
+                                             The Water Knife    True       0.676
+                                                      Lolita    True       0.644
+                                                Star-Crossed    True       0.641
+                                                      Twitch   False       0.633
+                                            Romeo and Juliet    True       0.632
+                          Dudleytown (Cornwall Novellas, #1)   False       0.629
+                                            My Invented Life    True       0.628
+Time Stops for No Mouse (The Hermux Tantamoq Adventures, #1)   False       0.627
+LogReg largest feature contributions (intercept 0.057):
+                           feature  value  contribution
+      49_play_theatre_hamlet_plays  5.052         0.175
+    78_nest_demon_population_group  6.030        -0.121
+        0_love_marriage_life_woman  1.871         0.110
+       4_gay_school_straight_girls  1.498         0.106
+53_musical_theater_play_production  3.532         0.101
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.455, LogReg score: 0.441
+kNN 10 nearest neighbours (of the 151 used):
+                                                          title  banned  similarity
+                                           The Canterbury Tales    True       0.760
+     The Darwin Awards: Evolution in Action (Darwin Awards, #1)   False       0.734
+               Lewis Carroll's Alice's Adventures in Wonderland   False       0.733
+     The Language of Thorns: Midnight Tales and Dangerous Magic    True       0.723
+Folk and Fairy Tales: A Handbook (Greenwood Folklore Handbooks)    True       0.719
+New Sudden Fiction: Short-Short Stories from America and Beyond    True       0.712
+                                                 The Hazel Wood    True       0.709
+                                   Apache Gold and Yaqui Silver   False       0.698
+                              The Annotated Classic Fairy Tales   False       0.697
+                                         Gentlemen from England   False       0.685
+LogReg largest feature contributions (intercept 0.057):
+                               feature  value  contribution
+31_animals_children_book_illustrations  2.862        -0.161
+   48_novel_american_classic_published  2.816         0.095
+        66_stories_short_story_writers  3.059         0.055
+            0_love_marriage_life_woman -0.638        -0.038
+           4_gay_school_straight_girls -0.517        -0.037
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.752, LogReg score: 0.733
+kNN 10 nearest neighbours (of the 151 used):
+                                                                      title  banned  similarity
+                                                                 How I Grew    True       0.906
+With Their Eyes: September 11th: The View from a High School at Ground Zero    True       0.900
+                                                   The Knife That Killed Me   False       0.899
+                                                       Spanking Shakespeare    True       0.894
+                                                       Sophomore Undercover    True       0.893
+                                                                 Resurgence   False       0.892
+                                                                  Fat Angie    True       0.885
+                                                      The Truth About Alice    True       0.881
+                                                                   Period 8    True       0.880
+                                              Putting Makeup on the Fat Boy    True       0.876
+LogReg largest feature contributions (intercept 0.057):
+                              feature  value  contribution
+39_education_students_teachers_racial  2.662         0.183
+          4_gay_school_straight_girls  2.448         0.173
+ 99_school_high_high x school_outcast  3.181         0.118
+114_summer_sophie_high x school_julia  2.505         0.102
+                10_novel_boy_year_old  1.687         0.094
+
+=== Everybody Sees the Ants (Book ID 21) - wrongly predicted not banned ===
+True: banned, kNN score: 0.414, LogReg score: 0.476
+kNN 10 nearest neighbours (of the 151 used):
+                                                                                title  banned  similarity
+                                                             A Million Shades of Gray    True       0.889
+                                                                 A Hand Full of Stars   False       0.873
+                                                                           Up Country    True       0.871
+                                 10,000 Days of Thunder: A History of the Vietnam War    True       0.865
+                                                                      Never Fall Down    True       0.859
+                                                                The Antietam Campaign   False       0.858
+                                                                           Collateral    True       0.857
+Attack on Titan: Before the Fall, Vol. 9 (Attack on Titan: Before the Fall Manga, #9)    True       0.856
+                                                                     The Yellow Birds    True       0.849
+                                                                   Hearts in Atlantis    True       0.846
+LogReg largest feature contributions (intercept 0.057):
+                      feature  value  contribution
+ 57_war_byron_military_german  3.527        -0.102
+  113_aria_prison_realm_magic  4.367        -0.095
+   0_love_marriage_life_woman  1.340         0.079
+67_war_germany_german_british  1.421        -0.064
+    81_gemma_tess_life_realms  2.072         0.058
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_126topics
+
+126t took 0:00:19 (total so far 0:05:17)
+
+###############################################################################
+# [11/11] 149t: datasets\topics\topics_m\149t
+###############################################################################
+Merged 6550 books with 149 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 101, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.659
+  previous setup (raw shares, similarity weights): 0.656
+LogReg best params: {'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.662
+  previous setup (raw shares, no pairs, L2): 0.659
+  best LogReg converged (17 of 5000 iterations)
+
+LogReg intercept: 0.058, non-zero weights: 149 of 149
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                              feature   weight
+        7_gender_gay_transgender_lgbt 0.108459
+39_education_students_teachers_racial 0.067827
+          6_gay_school_straight_girls 0.060656
+        13_el_patron_mexico_dominican 0.056203
+    12_black_americans_african_rights 0.054308
+  83_high_school_high x school_callie 0.050718
+            136_hair_black_girls_self 0.050539
+         1_love_marriage_woman_amanda 0.047468
+       11_killers_serial_murder_crime 0.046762
+                 5_novel_boy_old_year 0.046289
+Features pushing towards not banned:
+                           feature    weight
+75_detective_london_inspector_case -0.071480
+21_animals_illustrations_book_worm -0.053277
+         3_planet_earth_space_ship -0.051804
+        18_sea_ship_captain_voyage -0.047954
+       76_satan_magician_hell_soul -0.045638
+  77_buffy_willow_sunnydale_slayer -0.045516
+   58_science_time_empire_kingdoms -0.045130
+ 116_superhero_powers_daniel_super -0.044593
+     55_germany_war_german_british -0.043160
+            110_kat_trail_red_hike -0.042384
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.596   0.686     0.596     0.600    0.635
+  LogReg      0.589   0.603     0.579     0.580    0.628
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.61      0.51      0.55       637
+      banned       0.60      0.69      0.64       673
+
+    accuracy                           0.60      1310
+   macro avg       0.60      0.60      0.60      1310
+weighted avg       0.60      0.60      0.60      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[324 313]
+ [211 462]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.56      0.56       637
+      banned       0.59      0.60      0.60       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.58      0.58      1310
+weighted avg       0.58      0.58      0.58      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[354 283]
+ [267 406]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Boys, Bears, and a Serious Pair of Hiking Boots (Book ID 44) - correct banned ===
+True: banned, kNN score: 0.619, LogReg score: 0.536
+kNN 10 nearest neighbours (of the 101 used):
+                                                       title  banned  similarity
+                                                     Shadows   False       0.777
+             Willa by Heart (Wedding Planner's Daughter, #3)   False       0.728
+                 Ms. Marvel, #15: Damage Per Second, Part II   False       0.628
+                                                Star-Crossed    True       0.578
+                                    The Way You Make Me Feel   False       0.572
+                                             The Water Knife    True       0.569
+                                       My Family Plays Music    True       0.561
+                                     This Tiny Perfect World   False       0.558
+                                             Echo After Echo    True       0.552
+Time Stops for No Mouse (The Hermux Tantamoq Adventures, #1)   False       0.532
+LogReg largest feature contributions (intercept 0.058):
+                       feature  value  contribution
+  46_play_theatre_hamlet_plays  5.889         0.185
+133_energy_climate_eco_organic  4.486        -0.175
+      61_jodi_life_mother_pain  3.941         0.104
+  1_love_marriage_woman_amanda  2.153         0.102
+50_ballet_musical_theater_play  3.786         0.073
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.467, LogReg score: 0.429
+kNN 10 nearest neighbours (of the 101 used):
+                                                             title  banned  similarity
+                                          Good Faeries/Bad Faeries   False       0.590
+                                                My Neighbor Totoro   False       0.573
+Shirley Jackson's "The Lottery": The Authorized Graphic Adaptation    True       0.553
+                                Athletic Shorts: Six Short Stories    True       0.548
+                                             Five Bouncing Bunnies   False       0.548
+                                                 Princess Treasury   False       0.547
+                                                         Lily Wool   False       0.543
+                                                  Beans and Greens   False       0.537
+                          Going Up!: Elisha Otis's Trip to the Top   False       0.535
+                                        The Picture of Dorian Gray    True       0.527
+LogReg largest feature contributions (intercept 0.058):
+                               feature  value  contribution
+    21_animals_illustrations_book_worm  2.808        -0.150
+139_disney_adventures_story_wonderland  3.417        -0.138
+  49_novel_american_classic_generation  4.537         0.124
+          60_stories_short_story_poems  2.758         0.081
+        125_party_birthday_ivy_chicken  3.720         0.052
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.733, LogReg score: 0.723
+kNN 10 nearest neighbours (of the 101 used):
+                                                                      title  banned  similarity
+                                                                   Period 8    True       0.867
+                                                                   The Wave   False       0.835
+With Their Eyes: September 11th: The View from a High School at Ground Zero    True       0.835
+                                                                 How I Grew    True       0.828
+                                                       Sophomore Undercover    True       0.792
+                                            There's a Girl in My Hammerlock    True       0.780
+                                                      This Is Where It Ends    True       0.780
+                                                                 Whale Talk    True       0.773
+                                                                  Fat Angie    True       0.773
+                                                                 Resurgence   False       0.773
+LogReg largest feature contributions (intercept 0.058):
+                              feature  value  contribution
+39_education_students_teachers_racial  2.921         0.198
+  83_high_school_high x school_callie  3.047         0.155
+          6_gay_school_straight_girls  2.318         0.141
+  106_school_high x school_high_poets  4.232         0.101
+      93_school_class_teacher_student  3.127         0.093
+
+=== Everybody Sees the Ants (Book ID 21) - wrongly predicted not banned ===
+True: banned, kNN score: 0.399, LogReg score: 0.477
+kNN 10 nearest neighbours (of the 101 used):
+                               title  banned  similarity
+                     The Nightingale    True       0.728
+                        Sarah Bishop    True       0.710
+           What I Saw and How I Lied    True       0.680
+                     Never Fall Down    True       0.677
+            A Million Shades of Gray    True       0.654
+                         Double Star   False       0.651
+             The Tinkerer's Daughter   False       0.638
+Our Lizzie (The Kershaw Sisters, #1)   False       0.638
+                                Rage   False       0.636
+                          Collateral    True       0.634
+LogReg largest feature contributions (intercept 0.058):
+                        feature  value  contribution
+    56_war_german_military_navy  3.888        -0.140
+  55_germany_war_german_british  2.227        -0.096
+       61_jodi_life_mother_pain  2.868         0.076
+   1_love_marriage_woman_amanda  1.484         0.070
+35_sex_sexual_teens_information  3.020         0.063
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_149topics
+
+149t took 0:00:21 (total so far 0:05:37)
+
+Test metrics per number of topics:
+                 precision  recall  macro_f1  micro_f1  roc_auc
+topics model                                                   
+14     kNN           0.577   0.654     0.572     0.576    0.600
+       LogReg        0.578   0.632     0.572     0.574    0.601
+       Baseline      0.514   1.000     0.339     0.514    0.500
+17     kNN           0.570   0.657     0.565     0.569    0.596
+       LogReg        0.576   0.623     0.568     0.570    0.591
+       Baseline      0.514   1.000     0.339     0.514    0.500
+19     kNN           0.575   0.661     0.570     0.575    0.602
+       LogReg        0.575   0.618     0.567     0.569    0.599
+       Baseline      0.514   1.000     0.339     0.514    0.500
+24     kNN           0.579   0.679     0.576     0.582    0.607
+       LogReg        0.569   0.597     0.559     0.560    0.594
+       Baseline      0.514   1.000     0.339     0.514    0.500
+28     kNN           0.582   0.649     0.577     0.580    0.605
+       LogReg        0.575   0.602     0.566     0.567    0.597
+       Baseline      0.514   1.000     0.339     0.514    0.500
+45     kNN           0.587   0.698     0.586     0.592    0.625
+       LogReg        0.586   0.657     0.582     0.585    0.628
+       Baseline      0.514   1.000     0.339     0.514    0.500
+72     kNN           0.601   0.682     0.600     0.604    0.627
+       LogReg        0.585   0.618     0.577     0.579    0.621
+       Baseline      0.514   1.000     0.339     0.514    0.500
+88     kNN           0.592   0.673     0.590     0.594    0.614
+       LogReg        0.589   0.627     0.582     0.584    0.629
+       Baseline      0.514   1.000     0.339     0.514    0.500
+104    kNN           0.585   0.709     0.584     0.592    0.635
+       LogReg        0.592   0.606     0.583     0.583    0.636
+       Baseline      0.514   1.000     0.339     0.514    0.500
+126    kNN           0.600   0.670     0.598     0.601    0.636
+       LogReg        0.586   0.597     0.576     0.576    0.627
+       Baseline      0.514   1.000     0.339     0.514    0.500
+149    kNN           0.596   0.686     0.596     0.600    0.635
+       LogReg        0.589   0.603     0.579     0.580    0.628
+       Baseline      0.514   1.000     0.339     0.514    0.500
+
+Time per run:
+   14t: 0:00:20
+   17t: 0:00:28
+   19t: 0:00:34
+   24t: 0:01:01
+   28t: 0:01:35
+   45t: 0:00:13
+   72t: 0:00:15
+   88t: 0:00:16
+  104t: 0:00:16
+  126t: 0:00:19
+  149t: 0:00:21
+  total: 0:05:37

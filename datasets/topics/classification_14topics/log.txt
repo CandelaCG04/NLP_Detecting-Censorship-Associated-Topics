@@ -1,0 +1,185 @@
+
+###############################################################################
+# [1/11] 14t: datasets\topics\topics_m\14t
+###############################################################################
+Merged 6550 books with 14 topic shares
+Removed 0 books with an all-zero topic vector:
+Banned Status  banned  not banned  total
+Split                                   
+train               0           0      0
+test                0           0      0
+Train: 5240 books, test: 1310 books
+
+kNN best params: {'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}, CV ROC-AUC: 0.623
+  previous setup (raw shares, similarity weights): 0.623
+LogReg best params: {'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}, CV ROC-AUC: 0.622
+  previous setup (raw shares, no pairs, L2): 0.620
+  best LogReg converged (21 of 5000 iterations)
+
+LogReg intercept: 0.055, non-zero weights: 13 of 14
+(features are standardised: a weight is the effect of a one-SD increase in that feature)
+Features pushing towards banned:
+                      feature    weight
+12_gender_gay_transgender_sex  0.258926
+       0_love_school_life_new  0.190038
+ 2_life_story_american_family  0.133921
+ 11_team_baseball_sports_game  0.074147
+    9_art_artists_artist_book  0.071771
+    6_family_world_love_story  0.061384
+   10_family_house_mother_new  0.001272
+  5_god_ancient_world_history  0.000000
+  3_murder_killer_case_police -0.006505
+  13_comics_graphic_new_comic -0.032156
+Features pushing towards not banned:
+                    feature    weight
+ 7_book_children_little_new -0.176752
+  8_ship_earth_planet_world -0.140906
+   4_war_world_german_story -0.041904
+    1_world_life_magic_time -0.040652
+13_comics_graphic_new_comic -0.032156
+3_murder_killer_case_police -0.006505
+5_god_ancient_world_history  0.000000
+ 10_family_house_mother_new  0.001272
+  6_family_world_love_story  0.061384
+  9_art_artists_artist_book  0.071771
+
+Test metrics:
+   model  precision  recall  macro_f1  micro_f1  roc_auc
+     kNN      0.577   0.654     0.572     0.576    0.600
+  LogReg      0.578   0.632     0.572     0.574    0.601
+Baseline      0.514   1.000     0.339     0.514    0.500
+
+--- kNN ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.49      0.53       637
+      banned       0.58      0.65      0.61       673
+
+    accuracy                           0.58      1310
+   macro avg       0.58      0.57      0.57      1310
+weighted avg       0.58      0.58      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[314 323]
+ [233 440]]
+
+--- LogReg ---
+              precision    recall  f1-score   support
+
+  not banned       0.57      0.51      0.54       637
+      banned       0.58      0.63      0.60       673
+
+    accuracy                           0.57      1310
+   macro avg       0.57      0.57      0.57      1310
+weighted avg       0.57      0.57      0.57      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[327 310]
+ [248 425]]
+
+--- Baseline ---
+              precision    recall  f1-score   support
+
+  not banned       0.00      0.00      0.00       637
+      banned       0.51      1.00      0.68       673
+
+    accuracy                           0.51      1310
+   macro avg       0.26      0.50      0.34      1310
+weighted avg       0.26      0.51      0.35      1310
+
+Confusion matrix (rows = true, cols = predicted; not banned, banned):
+[[  0 637]
+ [  0 673]]
+
+=== Everybody Sees the Ants (Book ID 21) - correct banned ===
+True: banned, kNN score: 0.429, LogReg score: 0.554
+kNN 10 nearest neighbours (of the 151 used):
+                                    title  banned  similarity
+                                Federales   False       0.991
+         State of Alliance (Collapse, #5)   False       0.988
+                             Sarah Bishop    True       0.981
+          First Year (The Black Mage, #1)   False       0.980
+A Stranger to Command (Crown & Court 0.5)   False       0.975
+                              Double Star   False       0.973
+        She-Hulk, Volume 1: Deconstructed   False       0.970
+                          Heart of Thorns    True       0.965
+   The Visual Dictionary of The Civil War    True       0.964
+                        Hero on a Bicycle    True       0.964
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+12_gender_gay_transgender_sex -0.561        -0.145
+   7_book_children_little_new -0.797         0.141
+    8_ship_earth_planet_world -0.644         0.091
+     4_war_world_german_story  1.824        -0.076
+       0_love_school_life_new  0.378         0.072
+
+=== Winnie The Pooh: And The House At Pooh Corner (Book ID 3) - correct not banned ===
+True: not banned, kNN score: 0.297, LogReg score: 0.264
+kNN 10 nearest neighbours (of the 151 used):
+                                                                                                                                          title  banned  similarity
+                                                                                                  Dante's Purgatorio; Adapted by Marcus Sanders   False       1.000
+                                                                                                                              Princess Treasury   False       0.975
+                                                                                                                            The Gingerbread Man   False       0.973
+                                                                                                                     The Saints' Favorite Books   False       0.964
+                                                                           The Riddles of Harry Potter: Secret Passages and Interpretive Quests   False       0.961
+A Child's Introduction to Poetry: Listen While You Learn about the Magic Words That Have Moved Mountains, Won Battles and Made Us Laugh and Cry   False       0.953
+                                                                                                Fatale, Book Five: Curse the Demon (Fatale, #5)   False       0.947
+                                                                                                                                Someone Like Me   False       0.943
+                                                                               Secret Societies: Inside History's Most Mysterious Organizations   False       0.932
+                                                                                                                                  Seaside Dream   False       0.930
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+   7_book_children_little_new  3.033        -0.536
+       0_love_school_life_new -1.325        -0.252
+12_gender_gay_transgender_sex -0.561        -0.145
+ 2_life_story_american_family -1.067        -0.143
+    8_ship_earth_planet_world -0.644         0.091
+
+=== Spy High Mission One (Book ID 8) - wrongly predicted banned ===
+True: not banned, kNN score: 0.560, LogReg score: 0.611
+kNN 10 nearest neighbours (of the 151 used):
+                               title  banned  similarity
+                       Blanca & Roja    True       0.999
+                   The Rookie Bookie    True       0.995
+                     Black and White    True       0.990
+                        Rainbow High    True       0.988
+                          Whale Talk    True       0.985
+             I Love You, Beth Cooper    True       0.984
+Wicked Intentions (Wicked Games, #3)   False       0.982
+                   He Said, She Said    True       0.979
+                     Perpetual Check    True       0.972
+                           High Heat    True       0.972
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+ 11_team_baseball_sports_game  3.891         0.289
+       0_love_school_life_new  1.037         0.197
+12_gender_gay_transgender_sex -0.561        -0.145
+ 2_life_story_american_family -1.067        -0.143
+   7_book_children_little_new -0.797         0.141
+
+=== Imbeciles: The Supreme Court, American Eugenics, and the Sterilization of Carrie Buck (Book ID 55) - wrongly predicted not banned ===
+True: banned, kNN score: 0.568, LogReg score: 0.459
+kNN 10 nearest neighbours (of the 151 used):
+                                                                       title  banned  similarity
+                                                           Samir and Yonatan   False       0.995
+                                                                       SP4RX    True       0.995
+                                                      If He Had Been with Me    True       0.993
+Once Upon a Time: Behind the Fairy Tale of Princess Grace and Prince Rainier   False       0.992
+                                                            The White Dragon    True       0.992
+                                                                          We   False       0.991
+                                                 In the Beauty of the Lilies    True       0.982
+                                                          Time and the River   False       0.971
+                                                        Beauty and the Beast   False       0.964
+                                                                 Gallowglass   False       0.963
+LogReg largest feature contributions (intercept 0.055):
+                      feature  value  contribution
+ 2_life_story_american_family  2.089         0.280
+       0_love_school_life_new -1.325        -0.252
+   7_book_children_little_new  0.891        -0.157
+12_gender_gay_transgender_sex -0.561        -0.145
+    8_ship_earth_planet_world -0.644         0.091
+
+Saved models, tables, ROC and parameter search figures to datasets\topics\classification_14topics
+
+14t took 0:00:20 (total so far 0:00:20)

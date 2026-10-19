@@ -1,8 +1,0 @@
-model,param,value,cv_roc_auc
-kNN,knn__n_neighbors,101,0.5924761279976674
-kNN,knn__weights,uniform,0.5924761279976674
-kNN,transform,passthrough,0.5924761279976674
-LogReg,logreg__C,0.001,0.5944205116991034
-LogReg,logreg__l1_ratio,0.0,0.5944205116991034
-LogReg,pairs,"PolynomialFeatures(include_bias=False, interaction_only=True)",0.5944205116991034
-LogReg,transform,passthrough,0.5944205116991034

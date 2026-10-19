@@ -1,113 +1,97 @@
 param_logreg__C,param_logreg__l1_ratio,param_pairs,param_transform,params,mean_test_score,std_test_score,rank_test_score
-0.001,1.0,passthrough,passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.5,0.0,53
+0.0001,1.0,passthrough,passthrough,"{'logreg__C': 0.0001, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.5,0.0,41
+0.0001,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.0001, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5,0.0,41
+0.0001,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.0001, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.5,0.0,41
+0.0001,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.0001, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5,0.0,41
+0.0001,0.0,passthrough,passthrough,"{'logreg__C': 0.0001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6179918361396604,0.006557450283904116,27
+0.0001,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.0001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6175603178074203,0.007739714147602498,28
+0.0001,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.0001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6232334718273926,0.007600560150966184,4
+0.0001,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.0001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6156301479699686,0.010238645069988351,34
+0.001,1.0,passthrough,passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.5,0.0,41
 0.001,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5,0.0,53
-0.001,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.5,0.0,53
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5,0.0,41
+0.001,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.5,0.0,41
 0.001,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5,0.0,53
-0.001,0.0,passthrough,passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6075701581747941,0.015016231084645929,13
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5,0.0,41
+0.001,0.0,passthrough,passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6209147897077045,0.006704734522037328,23
 0.001,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6103152562140097,0.014816039959913757,1
-0.001,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6063258983890953,0.01486302492387347,25
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6216991034331947,0.006677252709899891,20
+0.001,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6259669072089803,0.008372087776439236,1
 0.001,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6039875355346601,0.01283056745730754,29
-0.01,1.0,passthrough,passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6030916976456011,0.016744872609178892,30
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.001, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6243807857715578,0.008616663763877168,2
+0.01,1.0,passthrough,passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6148647860631241,0.008278385754037743,38
 0.01,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5999723011881333,0.010290160100300793,43
-0.01,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6021477512938261,0.01365983881532488,33
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6095211021211459,0.007795140320186668,40
+0.01,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.618355200816386,0.008399175385135828,24
 0.01,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6009723740797434,0.009328893597637944,42
-0.01,0.0,passthrough,passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6074440556891901,0.014507489970381888,15
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6142448429185802,0.00723245454637374,39
+0.01,0.0,passthrough,passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6222501640061229,0.007141374205611522,17
 0.01,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6101570814199284,0.01267285154634536,2
-0.01,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6045101683796195,0.011322283220005811,28
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6232757489612946,0.007404877056375052,3
+0.01,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6212151031416283,0.00820285298707787,21
 0.01,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6024123478387637,0.009408025657214446,31
-0.1,1.0,passthrough,passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6066910853560755,0.014345550623949443,24
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.01, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6220511699103433,0.00883330350216992,18
+0.1,1.0,passthrough,passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6220500765361907,0.007295800005242375,19
 0.1,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6101126175377214,0.012099207628600376,3
-0.1,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6050076536190685,0.013029450351167452,27
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.623097893432466,0.007495656378647421,10
+0.1,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6230701946205992,0.009903608609561744,11
 0.1,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6051822290254391,0.012447604859734602,26
-0.1,0.0,passthrough,passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6073974050586777,0.014383534609509743,16
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6210857205335666,0.010196102884008415,22
+0.1,0.0,passthrough,passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6225891099934397,0.007299572435446946,12
 0.1,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6099799548072016,0.012593289045527579,5
-0.1,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6023591369633357,0.008173975155100443,32
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6231416283985713,0.007755725673438697,8
+0.1,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6180093301261025,0.008498632656326863,26
 0.1,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.596629856403528,0.0064766236943171965,44
-1.0,1.0,passthrough,passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6074586340112254,0.014450852578776712,14
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 0.1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6165595159997085,0.01034266576319282,32
+1.0,1.0,passthrough,passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6224892484874991,0.007287052450325628,16
 1.0,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6100273343538158,0.012656375927553939,4
-1.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6018204679641375,0.007914187651178578,34
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6231051825934835,0.0077828935500719515,9
+1.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6182243603761208,0.008422168937884719,25
 1.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5965146876594505,0.006734336947743555,45
-1.0,0.0,passthrough,passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6073820978205409,0.01434458621754349,17
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 1, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6164326845980028,0.01065624289243169,33
+1.0,0.0,passthrough,passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6225417304468255,0.007265715720471893,14
 1.0,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6098086595232889,0.012675709155142814,12
-1.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6017381004446388,0.007442153385506582,36
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6231780742036592,0.0078037612322628975,5
+1.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6174458779794445,0.008451914576156907,30
 1.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5949927108389824,0.006506939914235061,46
-10.0,1.0,passthrough,passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6073354471900284,0.014342290759853969,23
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 1, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.615470515343684,0.01073275933283722,36
+10.0,1.0,passthrough,passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6225533931044538,0.007256390051546424,13
 10.0,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6098290691741381,0.012685161987076029,7
-10.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6017657992565055,0.007372465966780744,35
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6231780742036591,0.007818705526673936,6
+10.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6174903418616517,0.008462712723741626,29
 10.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.59490451199067,0.006536053487946972,47
-10.0,0.0,passthrough,passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6073682484146075,0.01434117795964782,19
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 10, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6154770755885998,0.010772524373617117,35
+10.0,0.0,passthrough,passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.622537356950215,0.007263298257529289,15
 10.0,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6098101173554924,0.012698351916192613,11
-10.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6016666666666668,0.007321390098659643,38
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6231722428748452,0.007813795234796759,7
+10.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6173853779429987,0.008473434657781085,31
 10.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5946421021940375,0.0064536526445763505,52
-100.0,1.0,passthrough,passthrough,"{'logreg__C': 100, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6073667905824041,0.01434202060231388,21
-100.0,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 100, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6098166776004083,0.012698160929016945,8
-100.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 100, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6017067570522633,0.007316705973363851,37
-100.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 100, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5946741745025148,0.006406447785824113,51
-100.0,0.0,passthrough,passthrough,"{'logreg__C': 100, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6073682484146075,0.014346021599466888,19
-100.0,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 100, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6098669728114294,0.012688534081464883,6
-100.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 100, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6016615642539543,0.007315241028907678,39
-100.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 100, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.59467636125082,0.006392881845205324,50
-1000.0,1.0,passthrough,passthrough,"{'logreg__C': 1000, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.6073667905824041,0.014346174001633133,21
-1000.0,1.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1000, 'logreg__l1_ratio': 1.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6098108462715942,0.012699002472815343,10
-1000.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 1000, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6016484437641227,0.007315309956104076,40
-1000.0,1.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1000, 'logreg__l1_ratio': 1.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5946807347474306,0.006380469054322546,48
-1000.0,0.0,passthrough,passthrough,"{'logreg__C': 1000, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': 'passthrough'}",0.607375537575625,0.014352305966159702,18
-1000.0,0.0,passthrough,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1000, 'logreg__l1_ratio': 0.0, 'pairs': 'passthrough', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6098130330198994,0.012699836806783736,9
-1000.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)",passthrough,"{'logreg__C': 1000, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': 'passthrough'}",0.6016469859319192,0.007311552585593712,41
-1000.0,0.0,"PolynomialFeatures(include_bias=False, interaction_only=True)","FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'logreg__C': 1000, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5946807347474306,0.0063817827536059805,48
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'logreg__C': 10, 'logreg__l1_ratio': 0.0, 'pairs': PolynomialFeatures(include_bias=False, interaction_only=True), 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6152941176470589,0.0107567229514182,37

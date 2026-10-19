@@ -1,0 +1,9 @@
+model,param,value,cv_roc_auc
+kNN,knn__n_neighbors,101,0.6316783293242947
+kNN,knn__weights,uniform,0.6316783293242947
+kNN,transform,passthrough,0.6316783293242947
+LogReg,logreg__C,0.001,0.6289219330855019
+LogReg,logreg__l1_ratio,0.0,0.6289219330855019
+LogReg,pairs,"PolynomialFeatures(include_bias=False, interaction_only=True)",0.6289219330855019
+LogReg,transform,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)",0.6289219330855019

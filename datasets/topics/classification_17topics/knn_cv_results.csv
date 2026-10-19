@@ -1,113 +1,129 @@
 param_knn__n_neighbors,param_knn__weights,param_transform,params,mean_test_score,std_test_score,rank_test_score
-1,uniform,passthrough,"{'knn__n_neighbors': 1, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5416349588162401,0.011029056181295014,51
+1,uniform,passthrough,"{'knn__n_neighbors': 1, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5295415117719952,0.007428272591241873,61
 1,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 1, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5293898972228297,0.007788191063034293,55
-1,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 1, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5416349588162401,0.011029056181295014,51
-1,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 1, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5293898972228297,0.007788191063034293,55
-3,uniform,passthrough,"{'knn__n_neighbors': 3, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.549727385377943,0.013204586215408686,48
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 1, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5172884321014651,0.010157741964772357,63
+1,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 1, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.5295415117719952,0.007428272591241873,61
+1,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 1, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5172884321014651,0.010157741964772357,63
+3,uniform,passthrough,"{'knn__n_neighbors': 3, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5566502660543772,0.012551212822372095,57
 3,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 3, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5363699978132518,0.01589131400880398,54
-3,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 3, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5537152853706538,0.010741415199471716,47
-3,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 3, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.536710401632772,0.012333813869195702,53
-5,uniform,passthrough,"{'knn__n_neighbors': 5, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.564664698593192,0.013020117374561687,44
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 3, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5419636999781325,0.020631553553182483,59
+3,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 3, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.5537714119104891,0.010861276959665633,58
+3,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 3, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5407715576937095,0.01737913258716962,60
+5,uniform,passthrough,"{'knn__n_neighbors': 5, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5631602157591661,0.021108621012651155,54
 5,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 5, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5436689991981922,0.0193181028682621,50
-5,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 5, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5664235731467308,0.010262636121059038,43
-5,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 5, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5443210146512136,0.01744358577389131,49
-7,uniform,passthrough,"{'knn__n_neighbors': 7, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.566431955681901,0.011323078507725572,42
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 5, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5580902398133974,0.019179022481767248,55
+5,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 5, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.5636227130257307,0.018658403506706334,53
+5,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 5, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5570212843501713,0.018601680995277738,56
+7,uniform,passthrough,"{'knn__n_neighbors': 7, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5746825570376849,0.019705172799948847,48
 7,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 7, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5574214592900357,0.01737983673522941,46
-7,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 7, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5674546249726656,0.011766918537562305,40
-7,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 7, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5582790290837525,0.015601913035439929,45
-9,uniform,passthrough,"{'knn__n_neighbors': 9, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5715241635687731,0.006658151814892317,38
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 7, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5655907865004739,0.0217244071283246,51
+7,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 7, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.5741919965012028,0.018270912360166956,49
+7,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 7, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5646665208834463,0.020667285886691648,52
+9,uniform,passthrough,"{'knn__n_neighbors': 9, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5820901669217873,0.016840319694988566,43
 9,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 9, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5679823602303374,0.015643142263504668,39
-9,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 9, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5722662001603616,0.006904677675252593,37
-9,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 9, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5670657482323784,0.013235956704164227,41
-11,uniform,passthrough,"{'knn__n_neighbors': 11, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5771659741963701,0.008378859565520607,31
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 9, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5752000874699321,0.01808211991487157,47
+9,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 9, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.5813105911509585,0.016542830461166166,45
+9,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 9, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5736963335520081,0.019045334196170095,50
+11,uniform,passthrough,"{'knn__n_neighbors': 11, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5875154894671624,0.015496624408171388,41
 11,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 11, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5737918215613383,0.010838682615047448,36
-11,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 11, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5779663240760988,0.007534625733913493,30
-11,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 11, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5745283912821634,0.010483717676296375,35
-15,uniform,passthrough,"{'knn__n_neighbors': 15, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5837936438515927,0.01221770064151005,28
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 11, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5819895764997449,0.01572111652474,44
+11,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 11, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.5853404038195203,0.015603679064029333,42
+11,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 11, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5807187112763321,0.01620401136859584,46
+15,uniform,passthrough,"{'knn__n_neighbors': 15, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5978416794226985,0.012652633773553188,37
 15,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 15, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5751927983089147,0.0077121836838646915,34
-15,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 15, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5842871200524821,0.01070980664696057,27
-15,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 15, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5768554559370216,0.00711612388504334,33
-21,uniform,passthrough,"{'knn__n_neighbors': 21, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5900492018368685,0.013557856569286849,22
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 15, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5922877031853634,0.0164277653997583,39
+15,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 15, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.5969079378963482,0.013044947507366754,38
+15,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 15, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.5916878052336176,0.01648395507172116,40
+21,uniform,passthrough,"{'knn__n_neighbors': 21, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6040207012172898,0.00967858306421925,31
 21,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 21, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5770037903637292,0.008760052679593646,32
-21,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 21, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5911987025293389,0.013211237136439773,19
-21,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 21, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5782863182447701,0.007552305112219963,29
-31,uniform,passthrough,"{'knn__n_neighbors': 31, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5887032582549748,0.013847621431793097,24
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 21, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.602141919965012,0.011293979928665467,35
+21,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 21, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6039146439244844,0.010334328076252576,32
+21,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 21, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6015730009475909,0.011830298136561803,36
+31,uniform,passthrough,"{'knn__n_neighbors': 31, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.612711203440484,0.007202650914629794,28
 31,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 31, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5874560828048692,0.010460478041144783,26
-31,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 31, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5905700123915738,0.01382702366535893,20
-31,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 31, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5879346162256724,0.009792877824444083,25
-51,uniform,passthrough,"{'knn__n_neighbors': 51, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.594104162110941,0.01644151784197634,18
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 31, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6034747430570742,0.008431359693568884,33
+31,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 31, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6126164443472557,0.007592238799216906,29
+31,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 31, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6032327429112909,0.009046236253088464,34
+51,uniform,passthrough,"{'knn__n_neighbors': 51, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6199077921131277,0.009130645909079407,10
 51,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 51, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5898451053283768,0.016063869546870994,23
-51,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 51, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5951155332021285,0.015819914606617597,17
-51,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 51, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.590338945987317,0.016113726253251803,21
-75,uniform,passthrough,"{'knn__n_neighbors': 75, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5955590786500473,0.019559629774065505,15
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 51, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6125810919163205,0.011788473938668232,30
+51,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 51, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6200112981995772,0.008771890862861863,9
+51,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 51, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6127370799620964,0.011817048516359587,27
+75,uniform,passthrough,"{'knn__n_neighbors': 75, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6218252059187988,0.008235773854083906,4
 75,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 75, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5953312923682484,0.019594572542789485,16
-75,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 75, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5965274436912311,0.018997772767359714,13
-75,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 75, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5959541511771995,0.01858098986252449,14
-101,uniform,passthrough,"{'knn__n_neighbors': 101, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.600814928201764,0.014669123038140655,6
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 75, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6166378744806472,0.01168612984413177,23
+75,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 75, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6221743567315402,0.008395725510511095,3
+75,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 75, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6167818354107443,0.011603764752487148,21
+101,uniform,passthrough,"{'knn__n_neighbors': 101, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6225923901158977,0.013309169069481201,2
 101,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 101, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5981164807930608,0.01781895776021641,12
-101,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 101, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.6011859464975581,0.014556306605450927,5
-101,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 101, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5990126831401705,0.01757141252751307,9
-151,uniform,passthrough,"{'knn__n_neighbors': 151, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.5985815292659815,0.015580259056000021,11
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 101, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6167606968437932,0.011464186036977441,22
+101,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 101, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6228449595451564,0.01309137400638229,1
+101,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 101, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6172760405277352,0.01091564193040309,20
+151,uniform,passthrough,"{'knn__n_neighbors': 151, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6210230337488155,0.01417127983582908,6
 151,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 151, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5986420293024273,0.02086212905862238,10
-151,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.5991067133172971,0.016326786297691725,8
-151,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.5997095269334499,0.02074772900103538,7
-201,uniform,passthrough,"{'knn__n_neighbors': 201, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.601404985786136,0.017271203204152853,4
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 151, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6197692980537941,0.009087678192528316,11
+151,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6213922297543553,0.014248066629823211,5
+151,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 151, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6201406808076391,0.008789767020076975,8
+201,uniform,passthrough,"{'knn__n_neighbors': 201, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6185716888986078,0.01274858115482511,17
 201,uniform,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 201, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6018095342226109,0.018149141665837174,3
-201,<function cosine_similarity_weights at 0x0000021621A7EF20>,passthrough,"{'knn__n_neighbors': 201, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': 'passthrough'}",0.602279685108244,0.01727545181976832,2
-201,<function cosine_similarity_weights at 0x0000021621A7EF20>,"FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)","{'knn__n_neighbors': 201, 'knn__weights': <function cosine_similarity_weights at 0x0000021621A7EF20>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
-                    func=<function sqrt_shares at 0x00000216436B8720>)}",0.6023569502150302,0.01847451788920278,1
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 201, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6180370289379692,0.007752629206128207,18
+201,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 201, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6192820176397696,0.012776414494353544,12
+201,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 201, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6189284933304176,0.007613481699193319,14
+301,uniform,passthrough,"{'knn__n_neighbors': 301, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6186307311028502,0.01310617184720957,16
+301,uniform,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 301, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6178023179532035,0.011035766153386202,19
+301,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 301, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6202150302500182,0.013397514405957945,7
+301,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 301, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6188002040965085,0.010646093748557824,15
+501,uniform,passthrough,"{'knn__n_neighbors': 501, 'knn__weights': 'uniform', 'transform': 'passthrough'}",0.6158819884831257,0.012693312775715246,25
+501,uniform,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 501, 'knn__weights': 'uniform', 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.6139561921422845,0.011613166537302719,26
+501,<function cosine_similarity_weights at 0x00000228F74687C0>,passthrough,"{'knn__n_neighbors': 501, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': 'passthrough'}",0.6191267585100956,0.013166614999740957,13
+501,<function cosine_similarity_weights at 0x00000228F74687C0>,"FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)","{'knn__n_neighbors': 501, 'knn__weights': <function cosine_similarity_weights at 0x00000228F74687C0>, 'transform': FunctionTransformer(feature_names_out='one-to-one',
+                    func=<function sqrt_shares at 0x00000228F7468860>)}",0.615988774692033,0.011610719288436997,24
