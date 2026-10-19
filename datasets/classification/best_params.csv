@@ -1,0 +1,8 @@
+model,param,value,cv_roc_auc
+kNN,knn__n_neighbors,151,0.6298888402944822
+kNN,knn__weights,<function cosine_similarity_weights at 0x0000029DFA6887C0>,0.6298888402944822
+kNN,transform,passthrough,0.6298888402944822
+LogReg,logreg__C,0.1,0.6241355055033165
+LogReg,logreg__l1_ratio,1.0,0.6241355055033165
+LogReg,pairs,passthrough,0.6241355055033165
+LogReg,transform,passthrough,0.6241355055033165
